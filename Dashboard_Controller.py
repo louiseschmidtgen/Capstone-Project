@@ -1,6 +1,9 @@
 from Pop_up_gui import PopUpGUI
 from MapGUI import MapGUI
 from Learnset_Controller import LearnsetController
+from Translator_Controller import Translator_Controller
+
+
 class DashboardController():
     def __init__(self, user_object, login_out_controller):
         self.user_object = user_object

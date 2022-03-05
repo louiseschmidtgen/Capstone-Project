@@ -3,9 +3,10 @@ from Word import Word
 from Pop_up_gui import PopUpGUI
 
 class LearnsetController():
-    def __init__(self, user_object):
+    def __init__(self, user_object, dashboard_object):
         self.user_object = user_object
         self.popup = PopUpGUI()
+        self.dashboard_object = dashboard_object
 
     def create_word(self, wordEngl, wordGer, word_image, learnset, wordID=-1):
         """Creates a word if given info is correct and adds it to learnset

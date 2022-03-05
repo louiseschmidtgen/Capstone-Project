@@ -7,7 +7,10 @@ class PopUpGUI():
     def createPopUp(self, message):
         pass
     
-    def create_yes_no_pop_up(self):
+    def create_yes_no_pop_up(self, message):
+        pass
+    
+    def create_pop_up_with_picture(self, message, image):
         pass
 
         
