@@ -1,5 +1,5 @@
 
-from geniusgermanapp.Pop_up_gui import PopUpGUI
+from Pop_up_gui import PopUpGUI
 
 
 class GermanHolidaysController():
@@ -19,6 +19,7 @@ class GermanHolidaysController():
                 On this day the victims of the NS regime are remembered.", "url"],
         }
         self.popup = PopUpGUI()
+        
     def display_pop_up_with_info_on_holiday(self, holiday):
         info = self.holidaysdict[holiday][0]
         img_url = self.holidaysdict[holiday][0]        
