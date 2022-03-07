@@ -7,7 +7,7 @@ class Word():
         self.wordID = wordID
         self.wordEngl = wordEngl
         self.wordGer = wordGer
-        self.image = word_image
+        self.image = word_image #filename
         self.isfavorite = False
         
     def __str__(self):
