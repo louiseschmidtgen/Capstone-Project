@@ -105,8 +105,8 @@ class DB():
 
         TABLES['Word'] = (
             "CREATE TABLE `Word` ("
-            "  `wordId` int(11) NOT NULL,"            
-            "  `learnsetId` int(11) NOT NULL AUTO_INCREMENT,"
+            "  `wordId` int(11) NOT NULL  AUTO_INCREMENT,"            
+            "  `learnsetId` int(11) NOT NULL,"
             "  `wordEngl` varchar(25) NOT NULL,"
             "  `wordGer` varchar(25) NOT NULL,"
             "  `wordImg` varchar(40) NOT NULL,"
@@ -162,13 +162,39 @@ class DB():
      * Post0. Selects all data from the User table if connection to database if successful.
     * Post1. Displays None if connection to database is not successful.
     '''
+    #Table 1: User
+    def insert_user(self, username, userpassword):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"INSERT INTO User"
+                    "(username, userpassword) "
+                    "VALUES (%s, %s)")
+        data = (username, userpassword)
+        cursor.execute(query, data)
+        cnx.commit()
+        
     def return_user_id(self, username, userpassword):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT userId FROM User WHERE username = '{username}' AND userpassword = '{userpassword}'")
         cursor.execute(query)
-        cnx.commit()
-        return [i for i in cursor]
-        #TODO what is returned when user is not found
+        #cnx.commit()
+        return [i for i in cursor] 
+        #if does not exit returns [] else returns [(userid,)]
+        
+    def delete_user(self, userid ):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"DELETE FROM User WHERE userId = '{userid}'")
+        cursor.execute(query)
+        cnx.commit()    
+        
+    #Table2: Learnset
+    def insert_learnset(self, learnsetname, userid):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"INSERT INTO Learnset"
+                    "(learnsetName, userId) "
+                    "VALUES (%s, %s)")
+        data = (learnsetname, userid)
+        cursor.execute(query,data)
+        cnx.commit()    
     
     def get_learnsets(self, userid):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
@@ -177,6 +203,22 @@ class DB():
         #cnx.commit()
         return [i for i in cursor]
     
+    def delete_learnset(self, learnsetid):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"DELETE FROM Learnset WHERE learnsetId = '{learnsetid}'")
+        cursor.execute(query)
+        cnx.commit()
+    
+    #Table3: Words
+    def insert_word(self, learnsetId, wordEngl, wordGer, wordImg):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"INSERT INTO Word"
+                    "(learnsetId, wordEngl, wordGer, wordImg) "
+                    "VALUES (%s, %s, %s, %s)")
+        data = (learnsetId, wordEngl, wordGer, wordImg)
+        cursor.execute(query,data)
+        cnx.commit()    
+    
     def get_words(self, learnsetid):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT * FROM Word WHERE learnsetId = '{learnsetid}'")
@@ -184,40 +226,11 @@ class DB():
         #cnx.commit()
         return [i for i in cursor]        
         
-
-    def insert_user(self, username, userpassword):
+    def delete_word(self, wordid ):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
-        query = ("INSERT INTO User "
-                    "(username, userpassword) "
-                    "VALUES (%s, %s)")
-        data = (username, userpassword)
-        cursor.execute(query, data)
-        cnx.commit()
-
-    def insert_learnset(self, learnsetname, userid):
-        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
-        query = (f"INSERT INTO Learnset"
-                    "(learnsetName, userId) "
-                    "VALUES (%s, %s)")
-        data = (learnsetname, userid)
-        cursor.execute(query,data)
-        cnx.commit()
-
-    def insert_word(self, learnsetId, wordEngl, wordGer, wordImg):
-        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
-        query = (f"INSERT INTO Learnset"
-                    "(learnsetId, wordEngl, wordGer, wordImg) "
-                    "VALUES (%s, %s, %s, %s)")
-        data = (learnsetId, wordEngl, wordGer, wordImg)
-        cursor.execute(query,data)
-        cnx.commit()
-   
-
-    def delete_user(self, userid ):
-        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
-        query = (f"DELETE * FROM User WHERE userId = '{userid}'")
+        query = (f"DELETE FROM Word WHERE WordId = '{wordid}'")
         cursor.execute(query)
         cnx.commit()
 
-        
+
     

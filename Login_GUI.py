@@ -46,7 +46,7 @@ class LogInGUI(QWidget):
 
         #set layout
         self.setLayout(layout)
-    
+     
     
     def handle_close_window(self):
         print("Exit button pressed.")

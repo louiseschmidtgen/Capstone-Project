@@ -1,7 +1,7 @@
 import logging
 
 class User():
-    def __init__(self, pop_up_gui, userID, username, password, favorites_learnset, learnset_list=[]):
+    def __init__(self, userID, username, password, favorites_learnset=[], learnset_list=[]):
         """User Object keeps track of user data
 
         Args:
@@ -12,12 +12,12 @@ class User():
             favorites_learnset (learnset object): learnset that has all favorite words.
             learnset_list (list, optional): collection of learnset objects. Defaults to [].
         """
-        self.pop_up_gui = pop_up_gui
         self.userID = userID
         self.username = username
         self.password = password
-        self.favorites_learnset = favorites_learnset
+        self.favorites_learnset = favorites_learnset 
         self.learnset_list = learnset_list + [self.favorites_learnset]
+        self.newlearnsetID = -2 #-1 is for favorites learnset
         
     def add_learnset(self, learnset):
         """add learnset to user

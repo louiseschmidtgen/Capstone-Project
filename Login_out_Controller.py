@@ -5,8 +5,9 @@ from SignUp_GUI import SignupGUI
 from Dashboard_Controller import DashboardController
 from Pop_up_gui import PopUpGUI
 from user import User
+from Learnset import Learnset
 import sys
-
+ 
 class LoginOutController():
     def __init__(self, GGA_DB):
         self.database_manager = GGA_DB
@@ -34,20 +35,23 @@ class LoginOutController():
 
     def handle_login_request(self, username, password):
         print(username, password)
-        if self.validate_username_password(username, password):
-            self.login_gui.handle_close_window()
+        userid = self.validate_username_password(username, password)
+        if userid>0:  #existing user
+            #self.login_gui.handle_close_window()
             self.get_user_data_from_database(username, password)
             self.create_user_object()
-            self.create_dashboard_controller()
+        else: 
+            favorites_learnset = Learnset()
+            User(userid, username, password, )
+        self.create_dashboard_controller()
             
-    def validate_username_password(self):
-        pass
-    
-    def get_user_data_from_database(self):
-        pass
-    
-        def create_user_object(self):
-            pass
+    def validate_username_password(self, username, password):
+        userid_out = self.database_manager.return_user_id(username, password)
+        if userid_out == []:
+            return -1
+        else: return userid_out[0][0]
+        
+
     
     #Dashboard
     def create_dashboard_controller(self):
@@ -55,7 +59,7 @@ class LoginOutController():
     
     #Logout
     def logout_push_changes_to_database(self): 
-        pass
+        pass 
     
     #delete Account
     def delete_account(self):
