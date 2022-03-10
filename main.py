@@ -29,9 +29,7 @@ def main():
     #4. create PYQT Application, first window is login GUI
     app = QApplication(sys.argv)   
     login_out_controller.create_login_gui()
-    # ex = LogInGUI(login_out_controller)
-    # ex.createMainFrame()
-    # ex.show()
+
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

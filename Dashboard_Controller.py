@@ -11,10 +11,9 @@ class DashboardController():
         self.login_out_controller = login_out_controller
         self.popup = PopUpGUI()
         self.mapgui = None
-        self.holiday = None
+        self.holiday_controller = None
         self.translator = None
         self.dashboard_gui = None
-        
         self.learnset_controller = LearnsetController(user_object, self)
         
     def logout_processing(self):
@@ -46,9 +45,9 @@ class DashboardController():
         self.dashboard_gui.hide()
         
     def open_german_holidays(self):
-        if self.holiday == None:
-            self.holiday = GermanHolidaysGUI(self)
-            self.holiday.create_main_frame()
+        if self.holiday_controller == None:
+            self.holiday_controller = GermanHolidaysGUI(self)
+            self.holiday_controller.create_holidays_gui()
         self.dashboard_gui.hide()
     
     def open_login(self):

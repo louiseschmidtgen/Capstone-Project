@@ -1,10 +1,11 @@
 
 from Pop_up_gui import PopUpGUI
-
+from Holidays_GUI import GermanHolidaysGUI
 
 class GermanHolidaysController():
     def __init__(self, dashboard_controller):
         self.dashboard_controller = dashboard_controller
+        self.holiday_gui == None
         self.holidaysdict = {
             "Carnival": ["Carnival is a traditional German celebration occuring between 11 November at 11:11a.m. and Ash Wednesday. \
                 It is also known as Fasching or Fastnacht. During the carnival parades people wear masks and costumes and have a good time.", "url"],
@@ -24,5 +25,12 @@ class GermanHolidaysController():
         info = self.holidaysdict[holiday][0]
         img_url = self.holidaysdict[holiday][0]        
         self.popup.create_pop_up_with_picture(info, img_url)
-        
-        
+    
+    def create_holidays_gui(self): 
+        if self.holiday_gui == None:
+            self.holiday_gui = GermanHolidaysGUI(self)
+            self.holiday_gui.create_main_frame()
+        self.dashboard_gui.hide()
+    
+    def create_dashboard_gui(self):
+        self.dashboard_controller.create_dashboard_gui()
