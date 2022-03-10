@@ -1,7 +1,7 @@
 import logging
 
 class User():
-    def __init__(self, userID, username, password, favorites_learnset=[], learnset_list=[]):
+    def __init__(self, userID, username, password, favorites_learnset, learnset_list=[]):
         """User Object keeps track of user data
 
         Args:

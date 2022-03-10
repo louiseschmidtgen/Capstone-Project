@@ -1,6 +1,7 @@
 import logging
 import random 
 from Pop_up_gui import PopUpGUI
+
 class Learnset():
     """The Learnset Object holds all information on a given learnset."""
     def __init__(self, learnsetID, learnset_name, wordlist= []):

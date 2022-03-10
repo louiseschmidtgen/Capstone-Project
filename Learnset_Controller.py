@@ -2,7 +2,7 @@ from Learnset import Learnset
 from Word import Word
 from Pop_up_gui import PopUpGUI
 
-class LearnsetController():
+class LearnsetController(): 
     def __init__(self, user_object, dashboard_object):
         self.user_object = user_object
         self.popup = PopUpGUI()

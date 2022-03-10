@@ -21,11 +21,11 @@ def main():
     os.environ['SQLUser']='root'
     os.environ['SQLPassword']= 'Veritas!10'
     os.environ['SQLHost'] = "localhost"
-    os.environ['DB_NAME'] ='GeniusGermanAppDB'
+    os.environ['DB_NAME'] ='GeniusGermanDatabase'
     #SECTION 1 Create DB
     my_db = test1_create_db()
-    username = "lulu"
-    password = "pw"
+    username = "lou"
+    password = "123"
     userid = 1
     # SECTION 2 Test User
     test3_insert_user(my_db, username, password)
@@ -36,8 +36,9 @@ def main():
     
     #SECTION 3 Test Learnset
     #test 7-9: 
-    my_db.insert_learnset("animals", userid)
-    #my_db.insert_learnset("food", userid)
+    my_db.insert_learnset("Animals", userid)
+    my_db.insert_learnset("Food", userid)
+    my_db.insert_learnset("Favorites", userid)
     # print(my_db.get_learnsets(userid))
     # my_db.delete_learnset(4)
     # print(my_db.get_learnsets(userid))
@@ -48,7 +49,7 @@ def main():
     my_db.insert_word(learnsetid, "Cat", "Katze", "/images/cat.png")
     my_db.insert_word(learnsetid, "Dog", "Hund", "/images/dog.png")
     print(my_db.get_words(learnsetid))
-    my_db.delete_word(1)
+    #my_db.delete_word(1)
     print(my_db.get_words(learnsetid))
     
 main()

@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QLineEdit, QFormLayout, QWidget, QPushB
 from PyQt5.QtGui import QIcon, QPixmap
 
 
-class LogInGUI(QWidget):
+class LogInGUI(QWidget): 
     
     def __init__(self, login_out_controller):
         super().__init__()

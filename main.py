@@ -13,7 +13,7 @@ def set_env_variables():
     os.environ['SQLUser']='root'
     os.environ['SQLPassword']= 'Veritas!10'
     os.environ['SQLHost'] = "localhost"
-    os.environ['DB_NAME'] ='GeniusGermanDB'
+    os.environ['DB_NAME'] ='GeniusGermanDatabase'
 
 def main():
     #1. set environment variables. 
@@ -27,10 +27,11 @@ def main():
     login_out_controller = LoginOutController(GGA_DB)
     
     #4. create PYQT Application, first window is login GUI
-    app = QApplication(sys.argv)    
-    ex = LogInGUI(login_out_controller)
-    ex.createMainFrame()
-    ex.show()
+    app = QApplication(sys.argv)   
+    login_out_controller.create_login_gui()
+    # ex = LogInGUI(login_out_controller)
+    # ex.createMainFrame()
+    # ex.show()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
