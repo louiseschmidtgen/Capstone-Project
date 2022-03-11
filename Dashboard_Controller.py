@@ -3,7 +3,7 @@ from MapGUI import MapGUI
 from Learnset_Controller import LearnsetController
 from Translator_Controller import Translator_Controller
 from Dashboard_GUI import DashboardGUI
-from Holidays_GUI import GermanHolidaysGUI
+from Holidays_Controller import GermanHolidaysController
 
 class DashboardController():
     def __init__(self, user_object, login_out_controller):
@@ -46,7 +46,7 @@ class DashboardController():
         
     def open_german_holidays(self):
         if self.holiday_controller == None:
-            self.holiday_controller = GermanHolidaysGUI(self)
+            self.holiday_controller = GermanHolidaysController(self)
             self.holiday_controller.create_holidays_gui()
         self.dashboard_gui.hide()
     

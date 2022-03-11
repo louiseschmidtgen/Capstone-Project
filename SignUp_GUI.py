@@ -14,7 +14,7 @@ class SignupGUI(QWidget):
         layout = QFormLayout()
         # Logo:
         self.logo_label = QLabel(self)      
-        self.logo_pixmap = QPixmap('geniusgermanapp\GGA_logo.png')
+        self.logo_pixmap = QPixmap('images\GGA_logo.png')
         self.logo_label.setPixmap(self.logo_pixmap)
         #Buttons:    
         self.signup_button = QPushButton("Sign Up")

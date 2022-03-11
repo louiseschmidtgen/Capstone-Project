@@ -14,9 +14,9 @@ class DashboardGUI(QWidget):
         
         # Logo:
         self.logo_label = QLabel(self)      
-        self.logo_pixmap = QPixmap('geniusgermanapp\GGA_logo.png')
+        self.logo_pixmap = QPixmap('images\GGA_logo.png')
         self.logo_label.setPixmap(self.logo_pixmap)
-                #Buttons:    
+        #Buttons:    
         self.learnset_button = QPushButton("Learnsets")
         self.learnset_button.setObjectName("learnsets")
         self.learnset_button.clicked.connect(self.handle_learnsets)

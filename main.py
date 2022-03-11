@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QAction
 from Login_GUI import LogInGUI
 from Login_out_Controller import LoginOutController
 from Database_Manager import DB
-
 def set_env_variables():
     #export variables to environment for google api
     os.environ["X_RapidAPI_Host"]= "yh-finance.p.rapidapi.com"

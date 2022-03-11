@@ -13,11 +13,11 @@ class MapGUI(QWidget):
         layout = QGridLayout()
         # Logo:
         self.logo_label = QLabel(self)      
-        self.logo_pixmap = QPixmap('geniusgermanapp\MapGer.png')
+        self.logo_pixmap = QPixmap('images\MapGer.png')
         self.logo_label.setPixmap(self.logo_pixmap)        
         # Map Image:
         self.map_label = QLabel(self)      
-        self.map_pixmap = QPixmap('geniusgermanapp\GGA_logo.png')
+        self.map_pixmap = QPixmap('images\GGA_logo.png')
         self.map_label.setPixmap(self.logo_pixmap) 
         #button
         self.exit_button = QPushButton("Exit")
