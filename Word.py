@@ -1,4 +1,3 @@
-import logging
 
 class Word():
     """The Word class holds a words translations, id and image

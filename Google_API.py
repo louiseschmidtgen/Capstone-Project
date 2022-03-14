@@ -7,9 +7,9 @@ class GoogleAPI():
     def create_pop_up_with_error(self, message):
         self.popup.createPopUp(message)
         
-    def get_e2g_translation():
+    def get_e2g_translation(self, engl_word):
         pass
     
-    def get_e2g_translation():
+    def get_g2e_translation(self, ger_word):
         pass    
         

@@ -12,7 +12,7 @@ class DashboardController():
         self.popup = PopUpGUI()
         self.mapgui = None
         self.holiday_controller = None
-        self.translator = None
+        self.translator_controller = None
         self.dashboard_gui = None
         self.learnset_controller = LearnsetController(user_object, self)
         
@@ -34,10 +34,10 @@ class DashboardController():
         self.dashboard_gui.hide()
     
     def open_translator(self):
-        if self.mapgui == None:
-            self.mapgui = MapGUI(self)
-            self.mapgui.create_main_frame()
-        self.mapgui.show()
+        if self.translator_controller == None:
+            self.translator_controller = Translator_Controller(self)
+            self.translator_controller.create_translator_gui()
+        
         self.dashboard_gui.hide()
     
     def open_learnsets(self):

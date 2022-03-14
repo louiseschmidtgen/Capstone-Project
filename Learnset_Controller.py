@@ -1,12 +1,23 @@
 from Learnset import Learnset
 from Word import Word
 from Pop_up_gui import PopUpGUI
+from LS_Menu_GUI import LSMenuGUI
+from LS_Quiz_GUI import LSQuizGUI
+from LS_Study_GUI import LSStudyGUI
+from Add_Word import AddWordGUI
+from Add_LS import AddLearnsetGUI
 
 class LearnsetController(): 
     def __init__(self, user_object, dashboard_object):
         self.user_object = user_object
+        self.ls_menu_gui = None
+        self.ls_quiz_gui = None
+        self.ls_study_gui = None
+        self.add_word_gui = None
+        self.add_learnset_gui = None
         self.popup = PopUpGUI()
         self.dashboard_object = dashboard_object
+        
 
     def create_word(self, wordEngl, wordGer, word_image, learnset, wordID=-1):
         """Creates a word if given info is correct and adds it to learnset
@@ -91,20 +102,38 @@ class LearnsetController():
     def delete_learnset(self, learnset):               
         self.user_object.delete_learnset(learnset)
         
-    def open_learnset_study_mode_gui(self, learnset):
-        pass
+    def open_learnset_study_mode_gui(self, learnset_obj):
+        if self.ls_study_gui == None:
+            self.ls_study_gui = LSStudyGUI(self, learnset_obj)
+            self.ls_study_gui.create_main_frame()
+        self.ls_study_gui.show()
     
-    def open_learnset_quiz_mode_gui(self, learnset):
-        pass
+    def open_learnset_quiz_mode_gui(self, learnset_obj):
+        if self.ls_quiz_gui == None:
+            self.ls_quiz_gui = LSQuizGUI(self, learnset_obj)
+            self.ls_quiz_gui.create_main_frame()
+        self.ls_quiz_gui.show()
     
-    def open_add_word_gui(self):
-        pass
+    def open_add_word_gui(self, learnset_obj):
+        if self.add_word_gui == None:
+            self.add_word_gui = AddWordGUI(self, learnset_obj)
+            self.add_word_gui.create_main_frame()
+        self.add_word_gui.show()
     
     def open_add_learnset_gui(self):
-        pass
+        if self.add_learnset_gui == None:
+            self.add_learnset_gui = AddLearnsetGUI(self)
+            self.add_learnset_gui.create_main_frame()
+        self.add_learnset_gui.show()
     
     def create_learnset_menu_gui(self):
-        pass
+        if self.ls_menu_gui == None:
+            self.ls_menu_gui = LSMenuGUI(self, self.user_object)
+            self.ls_menu_gui.create_main_frame()
+        self.ls_menu_gui.show()
+    
+    def open_dashboard(self):
+        self.dashboard_object.create_dashboard_gui()
     
     
     

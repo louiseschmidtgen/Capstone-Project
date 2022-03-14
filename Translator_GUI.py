@@ -1,26 +1,82 @@
-from PyQt5.QtWidgets import QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
+from PyQt5.QtWidgets import QGridLayout, QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
 
 class TranslatorGUI(QWidget):
-    def __init__(self, dashboard_controller):
+    def __init__(self, translator_controller):
         super().__init__()
-        self.dashboard_controller = dashboard_controller
-        self.e2g_in = ""
-        self.e2g_out = ""
-        self.g2e_in = ""
-        self.g2e_out = ""  
+        self.translator_controller = translator_controller
               
     def create_main_frame(self):
         self.setWindowTitle('GGA: Translator Window ')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
         
-    def handle_e2g_translation(self):
-        pass
+        layout = QGridLayout()
+        
+        # Logo:
+        self.logo_label = QLabel(self)      
+        self.logo_pixmap = QPixmap('images\GGA_logo.png')
+        self.logo_label.setPixmap(self.logo_pixmap)#
+        
+        info = "For ß use ss\nFor ä use ae \nFor ü use ue \nFor ö use oe"
+        self.info_label = QLabel(info)  
+        
+        self.german_label = QLabel("German: ")  
+        self.german_label.setObjectName("LangLabel")  
+        self.engl_label = QLabel("English: ")
+        self.engl_label.setObjectName("LangLabel")  
+        self.german_label2 = QLabel("German: ")  
+        self.german_label2.setObjectName("LangLabel")  
+        self.engl_label2 = QLabel("English: ")
+        self.engl_label2.setObjectName("LangLabel") 
+   
+        #Buttons 
+        self.exit_button = QPushButton("Exit")
+        self.exit_button.setObjectName("Exit")  
+        self.exit_button.clicked.connect(self.handle_close_window)
+        
+        self.translate_e2g = QPushButton("Translate")
+        self.translate_e2g.setObjectName("Translator")  
+        self.translate_e2g.clicked.connect(self.handle_e2g_translation)        
+
+        self.translate_g2e = QPushButton("Translate")
+        self.translate_g2e.setObjectName("Translator")  
+        self.translate_g2e.clicked.connect(self.handle_g2e_translation)
+        
+        #Entry fields:
+        self.in_engl = QLineEdit()
+        self.in_ger = QLineEdit()
+        #Output fields labels need to change
+        self.out_ger = QLabel("ger")
+        self.out_engl = QLabel("engl")
+        
+        #Layout
+        layout.addWidget(self.logo_label, 0, 0)
+        layout.addWidget(QLabel("Translator"), 0, 1)
+        layout.addWidget(self.translate_e2g, 1, 1)
+        layout.addWidget(self.engl_label, 2,0)
+        layout.addWidget(self.german_label, 2,1)  
+        layout.addWidget(self.in_engl, 3,0)
+        layout.addWidget(self.out_ger, 3,1)         
+        layout.addWidget(self.translate_g2e, 4, 1)        
+        layout.addWidget(self.german_label2, 5,0)
+        layout.addWidget(self.engl_label2, 5,1)  
+        layout.addWidget(self.in_ger, 6,0)
+        layout.addWidget(self.out_engl, 6,1)   
+        layout.addWidget(self.info_label, 7,0)
+        layout.addWidget(self.exit_button, 7,1)  
+        
+        #set layout
+        self.setLayout(layout)                       
+           
+    def handle_e2g_translation(self, ):
+        engl_word = 0
+        translation = self.translator_controller.get_e2g_tranlation(engl_word)
     
     def handle_g2e_translation(self):
-        pass   
+        ger_word = 0
+        translation = self.translator_controller.get_e2g_tranlation(ger_word) 
      
-    def close_gui(self):
+    def handle_close_window(self):
         self.hide()
-        self.dashboard_controller.create_dashboard_gui()    
+        self.translator_controller.close_translator()    
