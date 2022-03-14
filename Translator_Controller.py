@@ -8,7 +8,7 @@ class Translator_Controller():
         
     def get_e2g_tranlation(self, engl_word):
         if self.google_api == None:
-            self.google_api  = GoogleAPI(self)
+            self.google_api  = GoogleAPI()
         translation = self.google_api.get_e2g_translation(engl_word)
         return translation
     

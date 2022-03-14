@@ -7,8 +7,8 @@ from Database_Manager import DB
 
 def set_env_variables():
     #export variables to environment for google api
-    os.environ["X_RapidAPI_Host"]= "yh-finance.p.rapidapi.com"
-    os.environ["X_RapidAPI_Key"]= 'e4aa3ef749msh8d1181ee3d067f7p1e8b82jsn029f5f35d857'
+    os.environ["X_RapidAPI_Host"]= "google-translate1.p.rapidapi.com"
+    os.environ["X_RapidAPI_Key"]= '9928c7260amshad0766390e03e89p1f4683jsn18824f37a5dc'
     # os.environ["GENIUS_GERMAN_DB_NAME"]= "GeniusGermanDB"
     os.environ['SQLUser']='root'
     os.environ['SQLPassword']= 'Veritas!10'

@@ -35,11 +35,11 @@ class TranslatorGUI(QWidget):
         self.exit_button.setObjectName("Exit")  
         self.exit_button.clicked.connect(self.handle_close_window)
         
-        self.translate_e2g = QPushButton("Translate")
+        self.translate_e2g = QPushButton("Translate to German")
         self.translate_e2g.setObjectName("Translator")  
         self.translate_e2g.clicked.connect(self.handle_e2g_translation)        
 
-        self.translate_g2e = QPushButton("Translate")
+        self.translate_g2e = QPushButton("Translate to English")
         self.translate_g2e.setObjectName("Translator")  
         self.translate_g2e.clicked.connect(self.handle_g2e_translation)
         
@@ -47,8 +47,8 @@ class TranslatorGUI(QWidget):
         self.in_engl = QLineEdit()
         self.in_ger = QLineEdit()
         #Output fields labels need to change
-        self.out_ger = QLabel("ger")
-        self.out_engl = QLabel("engl")
+        self.out_ger = QLabel("")
+        self.out_engl = QLabel("")
         
         #Layout
         layout.addWidget(self.logo_label, 0, 0)
@@ -70,13 +70,16 @@ class TranslatorGUI(QWidget):
         self.setLayout(layout)                       
            
     def handle_e2g_translation(self, ):
-        engl_word = 0
+        engl_word = self.in_engl.text()
         translation = self.translator_controller.get_e2g_tranlation(engl_word)
+        self.out_ger.setText(translation)
     
     def handle_g2e_translation(self):
-        ger_word = 0
-        translation = self.translator_controller.get_e2g_tranlation(ger_word) 
-     
+        ger_word = self.in_ger.text()
+        translation = self.translator_controller.get_g2e_tranlation(ger_word) 
+        self.out_engl.setText(translation)
+        
     def handle_close_window(self):
         self.hide()
-        self.translator_controller.close_translator()    
+        self.translator_controller.close_translator() 
+         

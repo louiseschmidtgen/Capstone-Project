@@ -48,9 +48,9 @@ class LSStudyGUI(QWidget):
         self.delete_word_button.setObjectName("Red")  
         self.delete_word_button.clicked.connect(self.handle_close_window)       
 
-        self.add_ls_button = QPushButton("+Word")
-        self.add_ls_button.setObjectName("Green")  
-        self.add_ls_button.clicked.connect(self.handle_add_word_event)
+        self.add_word_button = QPushButton("+Word")
+        self.add_word_button.setObjectName("Green")  
+        self.add_word_button.clicked.connect(self.handle_add_word_event)
         
         self.favorite_button = QPushButton("Favorite")
         self.favorite_button.setObjectName("YellowButton")  
@@ -65,9 +65,19 @@ class LSStudyGUI(QWidget):
         self.previous_button.clicked.connect(self.handle_previous_event)      
         
         layout.addWidget(self.logo_label, 0, 0)
-        layout.addWidget(self.exit_button, 6,2)
-        
+        layout.addWidget(self.learnsets_label, 0,1)
+        layout.addWidget(self.add_word_button, 0,2)
+        layout.addWidget(self.img_label, 1, 1)
+        layout.addWidget(self.favorite_button, 1,2)
+        layout.addWidget(self.engl_label, 3,1)
+        layout.addWidget(self.ger_label, 3,2)
+        layout.addWidget(self.previous_button, 4, 1)
+        layout.addWidget(self.next_button, 4,2)
+        layout.addWidget(self.delete_word_button, 5,0)
+        layout.addWidget(self.exit_button, 5,2)
+                
         self.setLayout(layout)   
+        
     def handle_add_word_to_favorites(self):
         self.learnset_controller.add_word_to_favorites(self.word)
 
