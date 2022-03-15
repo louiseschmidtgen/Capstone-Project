@@ -12,8 +12,8 @@ import sys
 import os
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QAction
 from Login_GUI import LogInGUI
-
 from Database_Manager import DB
+
 def create_user_from_database(mydb, userid, username, password):
     users_learnsets = []
     favorites_learnset = None
@@ -32,9 +32,11 @@ def create_user_from_database(mydb, userid, username, password):
             wordEngl = word_data[2]
             wordGer = word_data[3]
             wordimg = word_data[4]
+            print(wordimg)
             new_word = Word(wordid, wordEngl, wordGer, wordimg)
             users_words.append(new_word)
             print(new_word)
+            
         new_learnset = Learnset(learnsetid, learnsetname, users_words)
         users_learnsets.append(new_learnset)
         if learnsetname == "Favorites":
