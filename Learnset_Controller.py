@@ -106,12 +106,13 @@ class LearnsetController():
         if self.ls_study_gui == None:
             self.ls_study_gui = LSStudyGUI(self, learnset_obj)
             self.ls_study_gui.create_main_frame()
+        self.ls_menu_gui.hide()
         self.ls_study_gui.show()
     
     def open_learnset_quiz_mode_gui(self, learnset_obj):
-        if self.ls_quiz_gui == None:
-            self.ls_quiz_gui = LSQuizGUI(self, learnset_obj)
-            self.ls_quiz_gui.create_main_frame()
+        self.ls_quiz_gui = LSQuizGUI(self, learnset_obj)
+        self.ls_quiz_gui.create_main_frame()
+        self.ls_menu_gui.hide()
         self.ls_quiz_gui.show()
     
     def open_add_word_gui(self, learnset_obj):

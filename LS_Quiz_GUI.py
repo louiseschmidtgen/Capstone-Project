@@ -1,3 +1,4 @@
+from PyQt5.QtCore import Qt
 class LSQuizGUI():
     def __init__(self, master, learnset_controller, learnset):
         self.learnset_controller = learnset_controller

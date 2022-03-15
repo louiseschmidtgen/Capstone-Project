@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QGridLayout, QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
-
+from PyQt5.QtCore import Qt
 class TranslatorGUI(QWidget):
     def __init__(self, translator_controller):
         super().__init__()
@@ -16,7 +16,8 @@ class TranslatorGUI(QWidget):
         # Logo:
         self.logo_label = QLabel(self)      
         self.logo_pixmap = QPixmap('images\GGA_logo.png')
-        self.logo_label.setPixmap(self.logo_pixmap)#
+        smaller_pixmap = self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.logo_label.setPixmap(smaller_pixmap)
         
         info = "For ß use ss\nFor ä use ae \nFor ü use ue \nFor ö use oe"
         self.info_label = QLabel(info)  

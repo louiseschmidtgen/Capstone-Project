@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
-
+from PyQt5.QtCore import Qt
 class SignupGUI(QWidget):
     def __init__(self, login_out_controller):
         super().__init__()

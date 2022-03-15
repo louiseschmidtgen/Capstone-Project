@@ -23,6 +23,7 @@ class GoogleAPI():
             print("Check that API key and host is provided in the bash script run-main.sh.")
             print("Oops!", sys.exc_info()[0], "occurred.")
             print("Exception: ", e)
+            self.popup.createPopUp("Environment variables for Google API not set.")
             sys.exit(1) #crash
             
         #establish connection to API host   
@@ -51,7 +52,7 @@ class GoogleAPI():
         result_json = json.loads( data.decode("utf-8")) #dump it in json # convert result to json/dict#dump it in json # convert result to json/dict
         print(result_json)
         try:
-            translation = result_json["data"]["translations"][0]["translatedText"] #get uuid from result
+            translation = result_json["data"]["translations"][0]["translatedText"] #get translation from result
         except IndexError:
             print("Key error reading result.")
         print(f"translation: {translation}")

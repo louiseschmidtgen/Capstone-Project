@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow,QGridLayout, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtCore import Qt
 
 class DashboardGUI(QWidget):
     def __init__(self, dashboard_controller):
@@ -15,7 +16,8 @@ class DashboardGUI(QWidget):
         # Logo:
         self.logo_label = QLabel(self)      
         self.logo_pixmap = QPixmap('images\GGA_logo.png')
-        self.logo_label.setPixmap(self.logo_pixmap)
+        smaller_pixmap = self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.logo_label.setPixmap(smaller_pixmap)
         #Buttons:    
         self.learnset_button = QPushButton("Learnsets")
         self.learnset_button.setObjectName("learnsets")

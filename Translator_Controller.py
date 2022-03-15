@@ -14,7 +14,7 @@ class Translator_Controller():
     
     def get_g2e_tranlation(self, ger_word):
         if self.google_api == None:
-            self.google_api  = GoogleAPI(self)
+            self.google_api  = GoogleAPI()
         translation = self.google_api.get_g2e_translation(ger_word)
         return translation
     

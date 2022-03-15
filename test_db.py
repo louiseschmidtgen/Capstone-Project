@@ -28,7 +28,7 @@ def main():
     password = "123"
     userid = 1
     # SECTION 2 Test User
-    test3_insert_user(my_db, username, password)
+    #test3_insert_user(my_db, username, password)
     # test4_return_user_id(my_db, "lulu")
     # delete user, check for user just deleted.
     # test6_delete_user(my_db, userid)
@@ -36,20 +36,20 @@ def main():
     
     #SECTION 3 Test Learnset
     #test 7-9: 
-    my_db.insert_learnset("Animals", userid)
-    my_db.insert_learnset("Food", userid)
-    my_db.insert_learnset("Favorites", userid)
-    # print(my_db.get_learnsets(userid))
+    # my_db.insert_learnset("Animals", userid)
+    # my_db.insert_learnset("Food", userid)
+    #my_db.insert_learnset("Favorites", userid)
+    #print(my_db.get_learnsets(userid))
     # my_db.delete_learnset(4)
-    # print(my_db.get_learnsets(userid))
+    #print(my_db.get_learnsets(userid))
     
     #SECTION 4 Test Words
     #test 10-12
-    learnsetid = 1
-    my_db.insert_word(learnsetid, "Cat", "Katze", "/images/cat.png")
-    my_db.insert_word(learnsetid, "Dog", "Hund", "/images/dog.png")
+    learnsetid = 4
+    my_db.insert_word(learnsetid, "Map", "Karte", "images\MapGer.png")
+    my_db.insert_word(learnsetid, "Map2", "Karte2", "images\MapGer.png")
     print(my_db.get_words(learnsetid))
-    #my_db.delete_word(1)
-    print(my_db.get_words(learnsetid))
+    # #my_db.delete_word(1)
+    # print(my_db.get_words(learnsetid))
     
 main()

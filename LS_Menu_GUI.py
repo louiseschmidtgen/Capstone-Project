@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QComboBox, QMainWindow,QGridLayout, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtCore import Qt
 
 class LSMenuGUI(QWidget):
     def __init__(self, learnset_controller, user_obj):
@@ -16,7 +17,8 @@ class LSMenuGUI(QWidget):
         # Logo:
         self.logo_label = QLabel(self)      
         self.logo_pixmap = QPixmap('images\GGA_logo.png')
-        self.logo_label.setPixmap(self.logo_pixmap)
+        smaller_pixmap = self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.logo_label.setPixmap(smaller_pixmap)
         
         #Label
         self.learnsets_label = QLabel("Learnsets")
@@ -49,8 +51,8 @@ class LSMenuGUI(QWidget):
         layout.addWidget(self.add_ls_button, 0, 2)    
         layout.addWidget(self.learnset_menu, 1, 1)   
         layout.addWidget(self.mode_menu, 1, 2) 
-        layout.addWidget(self.submit_button, 2, 2)  
-        layout.addWidget(self.exit_button, 2, 0)
+        layout.addWidget(self.submit_button, 2, 1, 1, 2)  
+        layout.addWidget(self.exit_button, 4, 2)
          
         self.setLayout(layout) 
         

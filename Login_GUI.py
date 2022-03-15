@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
-
+from PyQt5.QtCore import Qt
 
 class LogInGUI(QWidget): 
     

@@ -5,6 +5,7 @@ from Pop_up_gui import PopUpGUI
 from user import User
 from Learnset import Learnset
 from Word import Word
+
 import sys
  
 class LoginOutController():
@@ -81,12 +82,15 @@ class LoginOutController():
                 wordimg = word_data[4]
                 new_word = Word(wordid, wordEngl, wordGer, wordimg)
                 users_words.append(new_word)
+                print(new_word)
             new_learnset = Learnset(learnsetid, learnsetname, users_words)
+            users_learnsets.append(new_learnset)
             if learnsetname == "Favorites":
                 favorites_learnset = new_learnset
         if favorites_learnset == None:
             favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
         my_user = User(userid, username, password, favorites_learnset, users_learnsets)
+        print(users_learnsets, users_words)
         return my_user
     
     #Dashboard

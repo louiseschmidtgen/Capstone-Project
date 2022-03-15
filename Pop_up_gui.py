@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMessageBox
-
+from PyQt5.QtCore import Qt
 # this class controls the graphical user interface of the Pop up window and what it displays.
 #  The attibute message is what will be displayed. Its methods are createPopUp()
 class PopUpGUI():

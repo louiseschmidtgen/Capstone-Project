@@ -11,6 +11,6 @@ class Word():
         
     def __str__(self):
         """Funtion for debugging"""
-        return f"wordid: {self.wordID}, engl: {self.wordEngl}, \
-              ger: {self.wordGer}"
+        return f"wordid: {self.wordID}, engl: {self.wordEngl},\
+        ger: {self.wordGer} loc: {self.image}"
         
