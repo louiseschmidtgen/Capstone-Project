@@ -142,4 +142,5 @@ class LSStudyGUI(QWidget):
         self.popup.createPopUp(msg)
         
     def handle_close_window(self):
+        self.destroy()
         self.learnset_controller.create_learnset_menu_gui()

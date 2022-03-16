@@ -103,9 +103,8 @@ class LearnsetController():
         self.user_object.delete_learnset(learnset)
         
     def open_learnset_study_mode_gui(self, learnset_obj):
-        if self.ls_study_gui == None:
-            self.ls_study_gui = LSStudyGUI(self, learnset_obj)
-            self.ls_study_gui.create_main_frame()
+        self.ls_study_gui = LSStudyGUI(self, learnset_obj)
+        self.ls_study_gui.create_main_frame()
         self.ls_menu_gui.hide()
         self.ls_study_gui.show()
     

@@ -47,6 +47,11 @@ def create_user_from_database(mydb, userid, username, password):
     print(users_learnsets, users_words)
     return my_user
 
+def create_default_user():
+    favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
+    my_user = User(-1, 'lu', 'password', favorites_learnset)
+    return my_user
+
 def main():
     #set environ
     os.environ['SQLUser']='root'
@@ -54,12 +59,12 @@ def main():
     os.environ['SQLHost'] = "localhost"
     os.environ['DB_NAME'] ='GeniusGermanDatabase'
     #SECTION 1 Create DB
-    my_db = DB()
+    #my_db = DB()
     username = "lou"
     password = "123"
     userid = 1
     
-    user = create_user_from_database(my_db, userid, username, password)
+    user = create_default_user
     ls_controller = LearnsetController(user, None)
     app = QApplication(sys.argv) 
     ls_controller.create_learnset_menu_gui()
