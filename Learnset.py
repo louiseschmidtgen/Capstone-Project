@@ -1,4 +1,4 @@
-import logging
+
 import random 
 from Pop_up_gui import PopUpGUI
 
@@ -49,11 +49,11 @@ class Learnset():
         try:
             self.wordlist.remove(word)
             
-            self.popup.createPopUp("Succesfully removed {word} from {self.learnset_name}")
+            self.popup.createPopUp(f"Succesfully removed {word.wordEngl} from {self.learnset_name}")
             return True
         except:
-            logging.warn(f"Could not remove {word} from {self.learnset_name}.")
-            self.popup.createPopUp("Could not remove {word} from {self.learnset_name}")
+            print(f"Could not remove {word.wordEngl} from {self.learnset_name}.")
+            self.popup.createPopUp(f"Could not remove {word.wordEngl} from {self.learnset_name}")
             return False
         
     

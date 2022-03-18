@@ -19,7 +19,7 @@ class LearnsetController():
         self.dashboard_object = dashboard_object
         
 
-    def create_word(self, wordEngl, wordGer, word_image, learnset, wordID=-1):
+    def create_word(self, wordEngl, wordGer, word_image, learnset):
         """Creates a word if given info is correct and adds it to learnset
         creates a popup gui to inform about success/no success.
 
@@ -30,11 +30,13 @@ class LearnsetController():
             learnset (learnset object): learnset object that holds all info on learnset
             wordID (int, optional): unique identifier of word. Defaults to -1.
         """
+        newwordID = self.user_object.newwordID 
         if wordEngl.isalpha() and wordGer.isalpha():
             #TO-DO: check image
-            new_word = Word(wordID, wordEngl, wordGer, word_image)
+            new_word = Word(newwordID , wordEngl, wordGer, word_image)
             self.add_word_to_learnset(new_word, learnset)
             self.popup.createPopUp("New Word added.")
+            self.user_object.newwordID  -=1
         else:
             self.popup.createPopUp("Please check your input. Word could not be added.")
             
@@ -63,7 +65,7 @@ class LearnsetController():
             word (word object): holds all info on a word
         """
         if word.isfavorite == True:
-            self.favorites_learnset.remove_word_from_learnset(word)        
+            self.user_object.favorites_learnset.remove_word_from_learnset(word)        
             word.isfavorite = False
   
     def remove_word_from_learnset(self, word, learnset):
@@ -79,7 +81,8 @@ class LearnsetController():
         #remove word from learnset
         if learnset.remove_word_from_learnset(word):
             #remove word from favorites if possible
-            self.favorites_learnset.remove_word_from_learnset(word)
+            if word.isfavorite:
+                self.remove_word_from_favorites(word)
             del word
 
     def add_learnset(self, name):
@@ -88,16 +91,17 @@ class LearnsetController():
         Args:
             name (str): name of new learnset
         """
+        print(name)
+        print(self.user_object.check_learnset_is_unique(name))
         if self.user_object.check_learnset_is_unique(name) and name !="":
-           new_learnset = Learnset(learnsetID=-1, learnset_name=name, wordlist= [])
+           new_learnset = Learnset(self.user_object.newlearnsetID, learnset_name=name, wordlist= [])
            self.user_object.add_learnset(new_learnset) 
+           self.user_object.newlearnsetID -=1
            self.popup.createPopUp(f"New Learnset created: {name}")
-           #TO-DO: Destroy Add Learnset GUI
+           self.ls_menu_gui.learnset_menu.addItem(name)
+           
         else:
             self.popup.createPopUp(f"Learnset could not be created: {name}")
-    
-    def add_learnset(self, learnset):
-        self.user_object.add_learnset(learnset)
 
     def delete_learnset(self, learnset):               
         self.user_object.delete_learnset(learnset)

@@ -1,23 +1,125 @@
+from PyQt5.QtWidgets import QComboBox, QMainWindow,QGridLayout, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import Qt
-class LSQuizGUI():
-    def __init__(self, master, learnset_controller, learnset):
+import random
+from Pop_up_gui import PopUpGUI
+from Word import Word
+
+class LSStudyGUI(QWidget):   
+    def __init__(self, learnset_controller, learnset_obj):
+        super().__init__()
         self.learnset_controller = learnset_controller
-        self.master = master
-        self.learnset = learnset
-        self.correct_words = []
-        self.incorrect_words = []
-        
+        self.learnset_obj = learnset_obj
+        self.word_index = 0
+        self.popup = None
+        self.correct = 0
+        self.total = 0
+        random.shuffle(self.learnset_obj.wordlist) #shuffle words
+        print(self.learnset_obj.wordlist)
+        if len(self.learnset_obj.wordlist) >0:
+            self.current_word = self.learnset_obj.wordlist[self.word_index]
+        else:
+            self.current_word = Word(-1, wordEngl="", wordGer="", word_image= 'images\imagenotfound.png')
+            
     def create_main_frame(self):
-        pass
-    
-    def handle_add_word_to_favorites(self, word):
-        pass
+        self.setWindowTitle("GGA: Study "+ self.learnset_obj.learnset_name)
+        self.setGeometry(100, 100, 280, 80)
+        self.move(60, 15)
+        layout = QGridLayout()
+        print(self.current_word)
+        # Logo:
+        self.logo_label = QLabel(self)      
+        self.logo_pixmap = QPixmap('images\GGA_logo.png')
+        smaller_pixmap = self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.logo_label.setPixmap(smaller_pixmap)
+        
+        #Main Image
+        self.img_label = QLabel(self)    
+        img_location =  self.current_word.image 
+        self.img_pixmap = QPixmap(img_location)
+        img_scaled_pixmap = self.img_pixmap.scaled(250, 250, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.img_label.setPixmap(img_scaled_pixmap)        
+        
+        #Label
+        self.learnsets_label = QLabel(self.learnset_obj.learnset_name)
+        self.wordEngl = self.current_word.wordEngl
+        self.engl_label = QLabel(self.wordEngl)
+        self.result = self.correct/self.total *100
+        self.result_label = QLabel(str(self.result)+"%")
+
+        #Buttons 
+        self.exit_button = QPushButton("Close")
+        self.exit_button.setObjectName("Red")  
+        self.exit_button.clicked.connect(self.handle_close_window)       
+        
+        self.favorite_button = QPushButton("Favorite")
+        self.favorite_button.setObjectName("YellowButton")  
+        self.favorite_button.clicked.connect(self.handle_add_word_to_favorites)
+        if self.learnset_obj.learnset_name == "Favorites":
+            self.favorite_button.hide()
+        
+        self.next_button = QPushButton("Next")
+        self.next_button.setObjectName("Green")
+        self.next_button.clicked.connect(self.handle_next_event)
+
+        self.check_button = QPushButton("Check")
+        self.check_button.setObjectName("Green")
+        self.check_button.clicked.connect(self.handle_check_event)      
+        
+        layout.addWidget(self.logo_label, 0, 0)
+        layout.addWidget(self.learnsets_label, 0,1)
+        layout.addWidget(self.add_word_button, 0,2)
+        layout.addWidget(self.img_label, 1, 1, 1, 2)
+        layout.addWidget(self.favorite_button, 1,3)
+        layout.addWidget(self.engl_label, 3,1)
+        layout.addWidget(self.ger_label, 3,2)
+        layout.addWidget(self.previous_button, 4, 1)
+        layout.addWidget(self.next_button, 4,2)
+        layout.addWidget(self.delete_word_button, 5,0)
+        layout.addWidget(self.exit_button, 5,3)
+                
+        self.setLayout(layout)   
+        
+    def handle_add_word_to_favorites(self):
+        #Make sure you don't add a word if there are none to add
+        if self.current_word.wordEngl !="":
+            self.learnset_controller.add_word_to_favorites(self.current_word)
+         
+    def update(self):
+        self.engl_label.setText(self.current_word.wordEngl)
+        #empty translation
+        self.img_pixmap = QPixmap(self.current_word.image)
+        img_scaled_pixmap = self.img_pixmap.scaled(250, 250, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.img_label.setPixmap(img_scaled_pixmap)  
+        #self.learnsets_label.setText(self.learnset_obj.learnset_name)
+        
+    def handle_next_event(self):
+        print("next")
+        if len(self.learnset_obj.wordlist)== 0:
+            self.create_popup("There are no words in the learnset.")
+            return
+        elif len(self.learnset_obj.wordlist)== 1:
+            self.create_popup("There is only one word in the learnset.")#
+            return
+                
+        elif (self.word_index +1) < len(self.learnset_obj.wordlist):
+            self.word_index +=1
+            self.current_word = self.learnset_obj.wordlist[self.word_index]
+        else:
+            self.word_index =0
+            self.current_word = self.learnset_obj.wordlist[self.word_index]
+        self.update()
+        
+    def create_popup(self, msg):
+        if self.popup == None:
+            self.popup = PopUpGUI()
+        self.popup.createPopUp(msg)
+        
+    def handle_close_window(self):
+        self.destroy()
+        self.learnset_controller.create_learnset_menu_gui()
+
     
     def handle_check_event(self):
         pass
     
-    def handle_next_event(self):
-        pass
-    
-    def handle_close_event(self):
-        pass

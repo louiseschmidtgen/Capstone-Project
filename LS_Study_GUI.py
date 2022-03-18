@@ -51,7 +51,7 @@ class LSStudyGUI(QWidget):
         
         self.delete_word_button = QPushButton("Delete Word")
         self.delete_word_button.setObjectName("Red")  
-        self.delete_word_button.clicked.connect(self.handle_close_window)       
+        self.delete_word_button.clicked.connect(self.handle_delete_word)       
 
         self.add_word_button = QPushButton("+Word")
         self.add_word_button.setObjectName("Green")  
@@ -60,6 +60,8 @@ class LSStudyGUI(QWidget):
         self.favorite_button = QPushButton("Favorite")
         self.favorite_button.setObjectName("YellowButton")  
         self.favorite_button.clicked.connect(self.handle_add_word_to_favorites)
+        if self.learnset_obj.learnset_name == "Favorites":
+            self.favorite_button.hide()
         
         self.next_button = QPushButton("Next")
         self.next_button.setObjectName("Green")
@@ -94,8 +96,9 @@ class LSStudyGUI(QWidget):
     def handle_delete_word(self):
         self.learnset_controller.remove_word_from_learnset(self.current_word, self.learnset_obj)
         
-        if len() ==0:
-            self.current_word = Word(wordEngl="", wordGer="", word_image="", word_imag= 'images\GGA_logo.png')
+        if len(self.learnset_obj.wordlist) ==0:
+            self.current_word = Word(-1,wordEngl="", wordGer="", word_image= 'images\GGA_logo.png')
+        self.handle_previous_event()
     
     def handle_previous_event(self):
         #no words

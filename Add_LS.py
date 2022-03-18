@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QGridLayout, QMainWindow, QLineEdit, QFormLayout, QWidget, QPushButton, QApplication, QAction, QLabel
 from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtCore import Qt
 
 class AddLearnsetGUI(QWidget):
     def __init__(self,  learnset_controller):
@@ -8,7 +9,7 @@ class AddLearnsetGUI(QWidget):
 
         
     def create_main_frame(self):
-        self.setWindowTitle('GGA: Translator Window ')
+        self.setWindowTitle('GGA: Add Learnset')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
         
@@ -17,7 +18,8 @@ class AddLearnsetGUI(QWidget):
         # Logo:
         self.logo_label = QLabel(self)      
         self.logo_pixmap = QPixmap('images\GGA_logo.png')
-        self.logo_label.setPixmap(self.logo_pixmap)
+        smaller_pixmap = self.logo_pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.logo_label.setPixmap(smaller_pixmap)
         #Label
         self.prompt_label = QLabel("New Learnset Name: ")
         
@@ -44,8 +46,10 @@ class AddLearnsetGUI(QWidget):
         self.setLayout(layout)     
         
     def handle_add_learnset_event(self):
-        name = ""
+        name = self.in_ls_name.text()
+        print(name)
         self.learnset_controller.add_learnset(name)
+        self.in_ls_name.setText("")
         
     def handle_close_window(self):
         self.hide()

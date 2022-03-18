@@ -1,5 +1,4 @@
-from cmath import pi
-import logging
+
 from Word import Word
 from Learnset import Learnset
 
@@ -33,6 +32,7 @@ class User():
         """
         self.learnset_list.append(learnset)
         
+        
     def delete_learnset(self, learnset):
         """Deletes a learnset if possible
 
@@ -49,9 +49,10 @@ class User():
         try:
             self.learnset_list.remove(learnset)
             del learnset
+            
             return True
         except:
-            logging.warn(f"Could not remove {learnset.learnset_name}")
+            print(f"Could not remove {learnset.learnset_name}")
             return False
         
     def check_learnset_is_unique(self, learnsetname):
@@ -64,8 +65,8 @@ class User():
         """
         for learnset in self.learnset_list:
             if learnset.learnset_name == learnsetname:
-                return True
-        return False
+                return False
+        return True
     
     def set_up_default_user(self):
         #Set up Animals
