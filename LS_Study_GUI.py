@@ -63,7 +63,7 @@ class LSStudyGUI(QWidget):
         
         self.next_button = QPushButton("Next")
         self.next_button.setObjectName("Green")
-        self.favorite_button.clicked.connect(self.handle_next_event)
+        self.next_button.clicked.connect(self.handle_next_event)
 
         self.previous_button = QPushButton("Previous")
         self.previous_button.setObjectName("Previous")
@@ -84,7 +84,9 @@ class LSStudyGUI(QWidget):
         self.setLayout(layout)   
         
     def handle_add_word_to_favorites(self):
-        self.learnset_controller.add_word_to_favorites(self.word)
+        #Make sure you don't add a word if there are none to add
+        if self.current_word.wordEngl !="":
+            self.learnset_controller.add_word_to_favorites(self.current_word)
 
     def handle_add_word_event(self):
         self.learnset_controller.open_add_word_gui(self.learnset_obj)
@@ -119,14 +121,17 @@ class LSStudyGUI(QWidget):
         self.ger_label.setText(self.current_word.wordGer)
         self.img_pixmap = QPixmap(self.current_word.image)
         img_scaled_pixmap = self.img_pixmap.scaled(250, 250, Qt.KeepAspectRatio, Qt.FastTransformation)
-        self.img_label.setPixmap(self.img_pixmap)  
-        self.learnsets_label.setText(self.learnset_obj.learnset_name)
+        self.img_label.setPixmap(img_scaled_pixmap)  
+        #self.learnsets_label.setText(self.learnset_obj.learnset_name)
         
     def handle_next_event(self):
+        print("next")
         if len(self.learnset_obj.wordlist)== 0:
             self.create_popup("There are no words in the learnset.")
+            return
         elif len(self.learnset_obj.wordlist)== 1:
-            self.create_popup("There is only one word in the learnset.")
+            self.create_popup("There is only one word in the learnset.")#
+            return
                 
         elif (self.word_index +1) < len(self.learnset_obj.wordlist):
             self.word_index +=1

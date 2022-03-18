@@ -64,7 +64,7 @@ def main():
     password = "123"
     userid = 1
     
-    user = create_default_user
+    user = create_default_user()
     ls_controller = LearnsetController(user, None)
     app = QApplication(sys.argv) 
     ls_controller.create_learnset_menu_gui()

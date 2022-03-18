@@ -16,14 +16,14 @@ class User():
             learnset_list (list, optional): collection of learnset objects. Defaults to [].
         """
         self.userID = userID
-        if self.userID <0:
-            self.set_up_default_user()     
         self.username = username
         self.password = password
         self.favorites_learnset = favorites_learnset 
         self.learnset_list = learnset_list + [self.favorites_learnset]
         self.newlearnsetID = -2 #-1 is for favorites learnset
         self.newwordID = -1 #-1 is for favorites learnset
+        if self.userID <0:
+            self.set_up_default_user()         
                 
     def add_learnset(self, learnset):
         """add learnset to user
