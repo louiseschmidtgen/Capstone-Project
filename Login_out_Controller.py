@@ -25,16 +25,20 @@ class LoginOutController():
     def write_new_user_to_database(self, username, password, repeatpassword):
         if password == repeatpassword:
             userid_out = self.database_manager.return_user_id(username, password)
+            #user doesnt exist
             if userid_out == []:
                 #check if already taken
-                self.database_manager.insert_user(username, password)
+                favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
+                my_user = User(-1, username, password, favorites_learnset)
+                self.user = self.push_changes_to_database(my_user)
+                
                 self.signup.hide()
             else:
                 self.popup.createPopUp("Please choose different username.")         
         else:
             self.popup.createPopUp("Password does not match")
     
-
+        
     #Functions login 
        
     def create_login_gui(self):
@@ -90,7 +94,7 @@ class LoginOutController():
         if favorites_learnset == None:
             favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
         my_user = User(userid, username, password, favorites_learnset, users_learnsets)
-        print(users_learnsets, users_words)
+        
         return my_user
     
     #Dashboard
@@ -101,8 +105,55 @@ class LoginOutController():
         
     
     #Logout
-    def logout_push_changes_to_database(self): 
-        pass 
+    def push_changes_to_database(self, new_user):
+        #Table 1: User
+        #if user new, insert them 
+        if new_user.userID <0:
+            #insert user
+            self.database_manager.insert_user(new_user.username, new_user.password)               
+            #get userid
+            user_id = self.database_manager.return_user_id(new_user.username, new_user.password)[0][0]   
+            new_user.userID = user_id
+        
+        #Table 2: Learnset
+        for new_ls in new_user.learnset_list:
+            #is a new learnset, add to db
+            if new_ls.learnsetID <0:
+                print(new_ls.learnset_name, new_user.userID)
+                self.database_manager.insert_learnset(new_ls.learnset_name, new_user.userID)
+                ls_id_new = self.database_manager.get_ls_id(new_ls.learnset_name, new_user.userID)[0][0]
+                print(ls_id_new)
+                new_ls.learnsetID = ls_id_new 
+            #there is no delete option for learnsets
+            
+        print("Words")   
+        #Table 3: Words
+        for ls in new_user.learnset_list:
+            #get wordids in DB related to this learnset            
+            db_words_out = self.database_manager.get_words(ls.learnsetID)
+            print("Get words of db:")
+            print(db_words_out)
+            #words format: [(1, 1, 'Cat', 'Katze', '/images/cat.png'), (2, 1, 'Dog', 'Hund', '/images/dog.png')] 
+            # wordid, learnsetid, wordEngl, wordGer, wordimg
+            db_words_wordids = []
+            for word_data in db_words_out:
+                wordid = word_data[0]
+                db_words_wordids.append(wordid)
+            print("Wordids")
+            print(db_words_wordids)
+            for word in ls.wordlist:
+                print(word)
+                #word is newl
+                if word.wordID <0:
+                    self.database_manager.insert_word(learnsetId= ls.learnsetID, wordEngl= word.wordEngl, wordGer = word.wordGer, wordImg= word.image)
+                #word in db
+                elif word.wordID in db_words_wordids:
+                    db_words_wordids.remove(word.wordID)
+            
+            #delete words that are no longer in current user but still in db
+            for wordid in db_words_wordids:
+                self.database_manager.delete_word(wordid)
+        return new_user
     
     #delete Account
     def delete_account(self):

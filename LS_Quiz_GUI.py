@@ -5,7 +5,7 @@ import random
 from Pop_up_gui import PopUpGUI
 from Word import Word
 
-class LSStudyGUI(QWidget):   
+class LSQuizGUI(QWidget):   
     def __init__(self, learnset_controller, learnset_obj):
         super().__init__()
         self.learnset_controller = learnset_controller
@@ -44,9 +44,12 @@ class LSStudyGUI(QWidget):
         self.learnsets_label = QLabel(self.learnset_obj.learnset_name)
         self.wordEngl = self.current_word.wordEngl
         self.engl_label = QLabel(self.wordEngl)
-        self.result = self.correct/self.total *100
-        self.result_label = QLabel(str(self.result)+"%")
+        
+        self.result_label = QLabel("%")
 
+        #Entry field
+        self.in_ger_translation = QLineEdit()
+        
         #Buttons 
         self.exit_button = QPushButton("Close")
         self.exit_button.setObjectName("Red")  
@@ -68,14 +71,13 @@ class LSStudyGUI(QWidget):
         
         layout.addWidget(self.logo_label, 0, 0)
         layout.addWidget(self.learnsets_label, 0,1)
-        layout.addWidget(self.add_word_button, 0,2)
+        layout.addWidget(self.result_label, 0,2)
         layout.addWidget(self.img_label, 1, 1, 1, 2)
         layout.addWidget(self.favorite_button, 1,3)
         layout.addWidget(self.engl_label, 3,1)
-        layout.addWidget(self.ger_label, 3,2)
-        layout.addWidget(self.previous_button, 4, 1)
-        layout.addWidget(self.next_button, 4,2)
-        layout.addWidget(self.delete_word_button, 5,0)
+        layout.addWidget(self.in_ger_translation, 3,2)
+        layout.addWidget(self.check_button, 4, 1, 1,2)
+        #layout.addWidget(self.next_button, 4,3)
         layout.addWidget(self.exit_button, 5,3)
                 
         self.setLayout(layout)   
@@ -88,13 +90,16 @@ class LSStudyGUI(QWidget):
     def update(self):
         self.engl_label.setText(self.current_word.wordEngl)
         #empty translation
+        self.in_ger_translation.setText("")
+        self.result = self.correct/self.total *100
+        self.result_label.setText(str(self.result)+"%")
         self.img_pixmap = QPixmap(self.current_word.image)
         img_scaled_pixmap = self.img_pixmap.scaled(250, 250, Qt.KeepAspectRatio, Qt.FastTransformation)
         self.img_label.setPixmap(img_scaled_pixmap)  
         #self.learnsets_label.setText(self.learnset_obj.learnset_name)
         
     def handle_next_event(self):
-        print("next")
+        
         if len(self.learnset_obj.wordlist)== 0:
             self.create_popup("There are no words in the learnset.")
             return
@@ -105,7 +110,7 @@ class LSStudyGUI(QWidget):
         elif (self.word_index +1) < len(self.learnset_obj.wordlist):
             self.word_index +=1
             self.current_word = self.learnset_obj.wordlist[self.word_index]
-        else:
+        else: #end of the quiz
             self.word_index =0
             self.current_word = self.learnset_obj.wordlist[self.word_index]
         self.update()
@@ -121,5 +126,13 @@ class LSStudyGUI(QWidget):
 
     
     def handle_check_event(self):
-        pass
-    
+        translation = self.in_ger_translation.text()
+        if self.current_word.wordGer == translation:
+            self.create_popup("Correct!")
+            self.correct+=1
+            self.total +=1
+            self.handle_next_event()
+        else:
+            self.create_popup(f"Wrong: The correct translation is {self.current_word.wordGer}")
+            self.total +=1
+            self.handle_next_event()

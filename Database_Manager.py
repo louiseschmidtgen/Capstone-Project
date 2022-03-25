@@ -194,7 +194,14 @@ class DB():
                     "VALUES (%s, %s)")
         data = (learnsetname, userid)
         cursor.execute(query,data)
-        cnx.commit()    
+        cnx.commit()  
+        
+    def get_ls_id(self, learnsetname, userid):
+        cursor, cnx = self.connect_to_db(db=self.DB_NAME)
+        query = (f"SELECT learnsetId FROM Learnset WHERE userId = '{userid}' AND learnsetName='{learnsetname}' ")
+        cursor.execute(query)
+        #cnx.commit()
+        return [i for i in cursor]        
     
     def get_learnsets(self, userid):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)

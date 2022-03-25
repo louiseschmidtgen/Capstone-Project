@@ -22,8 +22,11 @@ class User():
         self.newlearnsetID = -2 #-1 is for favorites learnset
         self.newwordID = -1 #-1 is for favorites learnset
         if self.userID <0:
-            self.set_up_default_user()         
-                
+            self.set_up_default_user()    
+                 
+    def ___str__(self):
+        return str(self.learnset_list)
+          
     def add_learnset(self, learnset):
         """add learnset to user
 
@@ -70,7 +73,7 @@ class User():
     
     def set_up_default_user(self):
         #Set up Animals
-        cat = Word(self.newwordID, "the cat", "die Katze", 'images\myanimals\cat.JPG')
+        cat = Word(self.newwordID, "the fat cat", "die fette Katze", 'images\myanimals\cat.JPG')
         self.newwordID -=1
         chameleon = Word(self.newwordID, "the chameleon", "das Chamäleon", 'images\myanimals\chameleon.jpg')
         self.newwordID -=1 

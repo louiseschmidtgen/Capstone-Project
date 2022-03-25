@@ -24,9 +24,10 @@ def main():
     os.environ['DB_NAME'] ='GeniusGermanDatabase'
     #SECTION 1 Create DB
     my_db = test1_create_db()
-    username = "lou"
-    password = "123"
+    username = "lolu"
+    password = "13"
     userid = 1
+    print(my_db.insert_user(username, password))
     # SECTION 2 Test User
     #test3_insert_user(my_db, username, password)
     # test4_return_user_id(my_db, "lulu")
@@ -36,7 +37,7 @@ def main():
     
     #SECTION 3 Test Learnset
     #test 7-9: 
-    # my_db.insert_learnset("Animals", userid)
+    #print(my_db.insert_learnset("Fried", userid))
     # my_db.insert_learnset("Food", userid)
     #my_db.insert_learnset("Favorites", userid)
     #print(my_db.get_learnsets(userid))
@@ -45,10 +46,10 @@ def main():
     
     #SECTION 4 Test Words
     #test 10-12
-    learnsetid = 4
-    my_db.insert_word(learnsetid, "Map", "Karte", "images\MapGer.png")
-    my_db.insert_word(learnsetid, "Map2", "Karte2", "images\MapGer.png")
-    print(my_db.get_words(learnsetid))
+    # learnsetid = 4
+    # my_db.insert_word(learnsetid, "Map", "Karte", "images\MapGer.png")
+    # my_db.insert_word(learnsetid, "Map2", "Karte2", "images\MapGer.png")
+    # print(my_db.get_words(learnsetid))
     # #my_db.delete_word(1)
     # print(my_db.get_words(learnsetid))
     

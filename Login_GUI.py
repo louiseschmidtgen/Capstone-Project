@@ -16,7 +16,7 @@ class LogInGUI(QWidget):
         layout = QFormLayout()
         # Logo:
         self.logo_label = QLabel(self)      
-        self.logo_pixmap = QPixmap('images\dog.JPG')
+        self.logo_pixmap = QPixmap('images\GGA_logo.png')
         self.logo_label.setPixmap(self.logo_pixmap)
         #Buttons:
         self.login_button = QPushButton("Log In")
