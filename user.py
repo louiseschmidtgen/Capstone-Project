@@ -151,7 +151,7 @@ class User():
         
         
         #Color
-        black = Word(self.newwordID, "black", "schwarz", 'images\color\mybrown.png')
+        black = Word(self.newwordID, "black", "schwarz", 'images\color\myblack.png')
         self.newwordID -=1
         blue = Word(self.newwordID, "blue", "blau", 'images\color\myblue.png')
         self.newwordID -=1 
