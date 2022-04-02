@@ -13,7 +13,7 @@ def set_env_variables():
     os.environ['SQLUser']='root'
     os.environ['SQLPassword']= 'Veritas!10'
     os.environ['SQLHost'] = "localhost"
-    os.environ['DB_NAME'] ='GeniusGermanDatabase'
+    os.environ['DB_NAME'] ='GeniusGermanDatabase2'
 
 def main():
     #1. set environment variables. 
@@ -34,3 +34,7 @@ def main():
 
 if __name__ == '__main__':
     main() 
+    #todo fix favorites word needs to be created with -1id
+    #add animals to favorites broken?
+    #runs put word in db twice for favorites ls
+    #sign in ls are duplicateds

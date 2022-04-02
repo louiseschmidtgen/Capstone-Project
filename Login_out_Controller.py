@@ -143,10 +143,12 @@ class LoginOutController():
             print(db_words_wordids)
             for word in ls.wordlist:
                 print(word)
-                #word is newl
+                #word is new- create the word in the db
                 if word.wordID <0:
                     self.database_manager.insert_word(learnsetId= ls.learnsetID, wordEngl= word.wordEngl, wordGer = word.wordGer, wordImg= word.image)
-                #word in db
+                #word in db, remove the word from the list, 
+                # so that we can remove all words in the next step 
+                # that the user deleted in the current session
                 elif word.wordID in db_words_wordids:
                     db_words_wordids.remove(word.wordID)
             

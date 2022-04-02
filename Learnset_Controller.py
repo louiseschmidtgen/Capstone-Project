@@ -56,7 +56,7 @@ class LearnsetController():
             word (word object): holds all info on a word
         """
         word.isfavorite = True
-        self.user_object.favorites_learnset.wordlist.append(word)
+        new_word  = self.create_word(word.wordEngl, word.wordGer, word.image, self.user_object.favorites_learnset)
    
     def remove_word_from_favorites(self, word):
         """removes a word from favorites

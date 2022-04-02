@@ -12,21 +12,22 @@ class PopUpGUI():
         msg.setText(message)
         x = msg.exec_() 
     
-    def create_yes_no_pop_up(self, message, title="Pop Up"):
+    def create_yes_no_pop_up(self, message, dashboard_obj, title="Pop Up", ):
+        def popup_clicked( i):
+            print(i.text())
+            if i.text() == "&Yes":
+                dashboard_obj.delete_account_processing()
+            else:
+                pass
         msg = QMessageBox()
         msg.setWindowTitle(title)
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No ) 
-        msg.buttonClicked.connect(self.popup_clicked)
+        msg.buttonClicked.connect(popup_clicked)
         msg.setText(message)
         x = msg.exec_() 
         
-    def popup_clicked(self, i):
-        if i.text() == "Yes":
-            pass
-        else:
-            self.hide()
+
                 
-    def create_pop_up_with_picture(self, message, image="images/sth.png"):
-        pass
+
 
         

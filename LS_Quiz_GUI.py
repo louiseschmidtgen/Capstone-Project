@@ -92,7 +92,7 @@ class LSQuizGUI(QWidget):
         #empty translation
         self.in_ger_translation.setText("")
         self.result = self.correct/self.total *100
-        self.result_label.setText(str(self.result)+"%")
+        self.result_label.setText(str(round(self.result,2))+"%")
         self.img_pixmap = QPixmap(self.current_word.image)
         img_scaled_pixmap = self.img_pixmap.scaled(250, 250, Qt.KeepAspectRatio, Qt.FastTransformation)
         self.img_label.setPixmap(img_scaled_pixmap)  

@@ -72,7 +72,7 @@ class AddWordGUI(QWidget):
         
     def handle_close_window(self):
         self.hide()
-        self.learnset_controller.create_learnset_menu_gui()
+        #self.learnset_controller.create_learnset_menu_gui()
         
     
         

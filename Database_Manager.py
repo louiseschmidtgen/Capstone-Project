@@ -109,7 +109,7 @@ class DB():
             "  `learnsetId` int(11) NOT NULL,"
             "  `wordEngl` varchar(25) NOT NULL,"
             "  `wordGer` varchar(25) NOT NULL,"
-            "  `wordImg` varchar(40) NOT NULL,"
+            "  `wordImg` varchar(150) NOT NULL,"
             "  PRIMARY KEY (`wordId`), FOREIGN KEY (`learnsetId`) REFERENCES `Learnset` (`learnsetId`) "
             ") ENGINE=InnoDB")
                     
@@ -183,6 +183,8 @@ class DB():
     def delete_user(self, userid ):
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"DELETE FROM User WHERE userId = '{userid}'")
+        #query = (f"DELETE FROM User INNER JOIN Learnset ON User.UserID = Learnset.UserID INNER JOIN Word ON Learnset.LearnsetID = Word.LearnsetID WHERE userId = '{userid}'")
+        #SELECT User.UserID FROM ([User] INNER JOIN Learnset ON User.UserID = Learnset.UserID) INNER JOIN Word ON Learnset.LearnsetID = Word.LearnsetID;
         cursor.execute(query)
         cnx.commit()    
         

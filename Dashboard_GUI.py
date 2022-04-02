@@ -37,7 +37,7 @@ class DashboardGUI(QWidget):
                 
         self.exit_button = QPushButton("Exit")
         self.exit_button.setObjectName("Exit")  
-        self.exit_button.clicked.connect(self.handle_close_window)
+        self.exit_button.clicked.connect(self.log_out_event)
         
         self.delete_button = QPushButton("Delete Account")
         self.delete_button.setObjectName("Delete")  
