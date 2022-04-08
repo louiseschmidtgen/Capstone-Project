@@ -24,7 +24,7 @@ class DashboardController():
         
     def delete_account_processing(self):
         self.dashboard_gui.hide()
-        self.login_out_controller.delete_account()
+        self.login_out_controller.delete_account(self.user_object)
     
     def open_map(self):
         if self.mapgui == None:

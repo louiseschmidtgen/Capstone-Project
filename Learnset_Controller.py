@@ -30,6 +30,9 @@ class LearnsetController():
             learnset (learnset object): learnset object that holds all info on learnset
             wordID (int, optional): unique identifier of word. Defaults to -1.
         """
+        if len(wordEngl)>25 or len(wordGer)>25 or len(word_image)>150:
+            self.popup.createPopUp("Please check your input. Word could not be added.")
+            return
         newwordID = self.user_object.newwordID 
         if wordEngl.isalpha() and wordGer.isalpha():
             #TO-DO: check image
@@ -81,8 +84,8 @@ class LearnsetController():
         #remove word from learnset
         if learnset.remove_word_from_learnset(word):
             #remove word from favorites if possible
-            if word.isfavorite:
-                self.remove_word_from_favorites(word)
+            # if word.isfavorite:
+            #     self.remove_word_from_favorites(word)
             del word
 
     def add_learnset(self, name):
@@ -91,6 +94,8 @@ class LearnsetController():
         Args:
             name (str): name of new learnset
         """
+        if len(name)>20:
+            self.popup.createPopUp(f"Learnset could not be created: {name} because name is too long.")
         print(name)
         print(self.user_object.check_learnset_is_unique(name))
         if self.user_object.check_learnset_is_unique(name) and name !="":

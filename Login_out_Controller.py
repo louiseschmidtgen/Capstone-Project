@@ -23,6 +23,8 @@ class LoginOutController():
             self.signup.show()
         
     def write_new_user_to_database(self, username, password, repeatpassword):
+        if len(username) > 40 or len(password) > 15 or len(repeatpassword)>15:
+            self.popup.createPopUp("username or password is too long.")
         if password == repeatpassword:
             userid_out = self.database_manager.return_user_id(username, password)
             #user doesnt exist
@@ -56,6 +58,9 @@ class LoginOutController():
         
     def handle_login_request(self, username, password):
         print(username, password)
+        if username =="" or password =="":
+            self.popup.createPopUp("Username and Password must be specified.")
+            return
         userid = self.get_user_id(username, password)
         print("userid", userid)
         if userid>0:  #existing user
@@ -158,8 +163,18 @@ class LoginOutController():
         return new_user
     
     #delete Account
-    def delete_account(self):
-        self.database_manager.delete_user(self.user.userID)
+    def delete_account(self, user):
+        #first delete words then learnset and last user, to avoid dependency problems
+        print(user.userID)
+        for ls in user.learnset_list:
+            print(ls.learnsetID)
+            for word in ls.wordlist:
+                if word.wordID >0:
+                    self.database_manager.delete_word(word.wordID)
+            if ls.learnsetID >0:
+                self.database_manager.delete_learnset(ls.learnsetID)
+                
+        self.database_manager.delete_user(user.userID)
         self.login_gui.show()
         #To_do: Check if all linked to user is deleted
     

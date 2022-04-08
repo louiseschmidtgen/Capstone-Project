@@ -236,6 +236,7 @@ class DB():
         return [i for i in cursor]        
         
     def delete_word(self, wordid ):
+        print(f"Deleting word {wordid}")
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"DELETE FROM Word WHERE WordId = '{wordid}'")
         cursor.execute(query)

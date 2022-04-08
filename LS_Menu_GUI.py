@@ -39,6 +39,7 @@ class LSMenuGUI(QWidget):
         self.learnset_menu = QComboBox()
         self.learnset_obj_list = self.user_obj.learnset_list
         self.learnset_list = [x.learnset_name for x in self.learnset_obj_list]
+        print(self.learnset_list)
         self.learnset_menu.addItems(self.learnset_list)
         
         #ComboBox
