@@ -18,7 +18,7 @@ class DashboardController():
         
     def logout_processing(self):
         self.login_out_controller.push_changes_to_database(self.user_object)
-    
+        
     def popup_account_deletion(self):
         self.popup.create_yes_no_pop_up( "Are you sure that you want to delete this account?", self)
         

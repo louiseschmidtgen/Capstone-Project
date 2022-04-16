@@ -17,10 +17,9 @@ class LoginOutController():
     
     #Functions SignUp
     def create_sign_up_gui(self): 
-        if self.signup == None:
-            self.signup = SignupGUI(self)
-            self.signup.createMainFrame()
-            self.signup.show()
+        self.signup = SignupGUI(self)
+        self.signup.createMainFrame()
+        self.signup.show()
         
     def write_new_user_to_database(self, username, password, repeatpassword):
         if len(username) > 40 or len(password) > 15 or len(repeatpassword)>15:
@@ -32,6 +31,7 @@ class LoginOutController():
                 #check if already taken
                 favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
                 my_user = User(-1, username, password, favorites_learnset)
+                my_user.learnset_list.append(favorites_learnset)
                 self.user = self.push_changes_to_database(my_user)
                 
                 self.signup.hide()
@@ -44,9 +44,8 @@ class LoginOutController():
     #Functions login 
        
     def create_login_gui(self):
-        if self.login_gui == None:
-            self.login_gui = LogInGUI(self)
-            self.login_gui.createMainFrame()
+        self.login_gui = LogInGUI(self)
+        self.login_gui.createMainFrame()
         self.login_gui.show()
 
     def get_user_id(self, username, password):
@@ -77,7 +76,9 @@ class LoginOutController():
     def create_user_from_database(self, userid, username, password):
         users_learnsets = []
         favorites_learnset = None
-        learnsets = self.database_manager.get_learnsets(userid)
+        learnsets = self.database_manager.get_learnsets(userid) #only one favorites ls
+        #print(learnsets)
+        #[(63, 'Favorites', 13), (64, 'Food', 13), (65, 'Animals', 13), (66, 'Numbers', 13), (67, 'Colors', 13)]
         #returns format: [(4, 'animals', 2), (5, 'food', 2)]first is learnset id, learnset name, userid
         for learnset_data in learnsets:
             learnsetid = learnset_data[0]
@@ -99,9 +100,12 @@ class LoginOutController():
             users_learnsets.append(new_learnset)
             if learnsetname == "Favorites":
                 favorites_learnset = new_learnset
+        #print(users_learnsets) #only 1 Favorite ls
         if favorites_learnset == None:
+            
             favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
         my_user = User(userid, username, password, favorites_learnset, users_learnsets)
+        my_user.print_learnsets()
         
         return my_user
     
@@ -163,6 +167,7 @@ class LoginOutController():
             #delete words that are no longer in current user but still in db
             for wordid in db_words_wordids:
                 self.database_manager.delete_word(wordid)
+        self.create_login_gui()
         return new_user
     
     #delete Account
@@ -178,7 +183,7 @@ class LoginOutController():
                 self.database_manager.delete_learnset(ls.learnsetID)
                 
         self.database_manager.delete_user(user.userID)
-        self.login_gui.show()
+        self.create_login_gui()
         #To_do: Check if all linked to user is deleted
     
     def close_app(self):

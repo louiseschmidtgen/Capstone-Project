@@ -30,18 +30,23 @@ class LearnsetController():
             learnset (learnset object): learnset object that holds all info on learnset
             wordID (int, optional): unique identifier of word. Defaults to -1.
         """
-        if len(wordEngl)>25 or len(wordGer)>25 or len(word_image)>150:
-            self.popup.createPopUp("Please check your input. Word could not be added.")
+        print(wordEngl)
+        print(wordGer)
+        print(word_image)
+        print(learnset)
+        if len(wordEngl)>25 or len(wordGer)>25 or len(word_image)>450:
+            self.popup.createPopUp("1Please check your input. Word could not be added.")
             return
         newwordID = self.user_object.newwordID 
-        if wordEngl.isalpha() and wordGer.isalpha():
+        if all(x.isalpha() or x.isspace() for x in wordEngl) and all(x.isalpha() or x.isspace() for x in wordGer): 
+        #if wordEngl.isalpha() and wordGer.isalpha():
             #TO-DO: check image
             new_word = Word(newwordID , wordEngl, wordGer, word_image)
             self.add_word_to_learnset(new_word, learnset)
             self.popup.createPopUp("New Word added.")
             self.user_object.newwordID  -=1
         else:
-            self.popup.createPopUp("Please check your input. Word could not be added.")
+            self.popup.createPopUp("2Please check your input. Word could not be added.")
             
     def add_word_to_learnset(self, new_word, learnset):
         """_summary_

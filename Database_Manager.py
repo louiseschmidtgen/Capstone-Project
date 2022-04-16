@@ -109,7 +109,7 @@ class DB():
             "  `learnsetId` int(11) NOT NULL,"
             "  `wordEngl` varchar(25) NOT NULL,"
             "  `wordGer` varchar(25) NOT NULL,"
-            "  `wordImg` varchar(150) NOT NULL,"
+            "  `wordImg` varchar(450) NOT NULL,"
             "  PRIMARY KEY (`wordId`), FOREIGN KEY (`learnsetId`) REFERENCES `Learnset` (`learnsetId`) "
             ") ENGINE=InnoDB")
                     

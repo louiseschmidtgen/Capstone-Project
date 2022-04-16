@@ -18,7 +18,7 @@ class User():
         self.username = username
         self.password = password
         self.favorites_learnset = favorites_learnset 
-        self.learnset_list = learnset_list + [self.favorites_learnset]
+        self.learnset_list = learnset_list #+ [self.favorites_learnset]
         self.newlearnsetID = -2 #-1 is for favorites learnset
         self.newwordID = -1 #-1 is for favorites learnset
         if self.userID <0:
@@ -26,7 +26,10 @@ class User():
                  
     def ___str__(self):
         return str(self.learnset_list)
-          
+    
+    def print_learnsets(self):
+        for ls in self.learnset_list:
+            print(ls.learnset_name)      
     def add_learnset(self, learnset):
         """add learnset to user
 
