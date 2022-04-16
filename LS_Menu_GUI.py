@@ -9,6 +9,7 @@ class LSMenuGUI(QWidget):
         self.user_obj = user_obj
         
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle('GGA: German Holidays')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -58,6 +59,9 @@ class LSMenuGUI(QWidget):
         self.setLayout(layout) 
         
     def handle_submit_event(self):
+        """This function invokes open_learnset_study_mode_gui or 
+        open_learnset_quiz_mode_gui function in learnset controller 
+        depending on which mode is selected in the mode menu."""
         learnset_name = self.learnset_menu.currentText()
         print(learnset_name)
         learnset_obj = self.learnset_obj_list[self.learnset_menu.currentIndex()]
@@ -69,9 +73,11 @@ class LSMenuGUI(QWidget):
             self.learnset_controller.open_learnset_quiz_mode_gui(learnset_obj) 
    
     def handle_add_learnset_event(self):
+        """This function invokes open_dashboard function in learnset controller."""
         self.hide()
         self.learnset_controller.open_add_learnset_gui()
     
     def handle_close_window(self):
+        """This function invokes open_dashboard function in learnset controller."""
         self.hide()
         self.learnset_controller.open_dashboard()

@@ -9,12 +9,36 @@ class GoogleAPI():
         self.popup = PopUpGUI()
         
     def get_e2g_translation(self, engl_word):
+        """This function calls the translate function to translate its input
+        Args:
+            engl_word (str): Users input that needs to be translated.
+
+        Returns:
+            str: The German translation of the Word.
+        """
         return self.translate(engl_word, source_lang="en", target_lang="ger")
     
     def get_g2e_translation(self, ger_word):
+        """This function calls the translate function to translate its input
+
+        Args:
+            ger_word (str): Users input that needs to be translated.
+
+        Returns:
+            str: The English translation of the Word.
+        """
         return self.translate(ger_word, source_lang="ger", target_lang="en") 
     
     def translate(self, word, source_lang, target_lang):
+        """This function calls Google API to translate a Word from a given source language to a target language.
+
+        Args:
+            word (str): word that should be translated
+            source_lang (str): has either value ger/en
+            target_lang (str): has either value ger/en
+        Returns:
+            str: The translation of the Word.
+        """
         #get keys from environment
         try:
             api_host = str(os.getenv('X_RapidAPI_Host'))

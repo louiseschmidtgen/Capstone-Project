@@ -15,15 +15,22 @@ class GermanHolidaysController():
         self.popup = PopUpGUI()
         
     def display_pop_up_with_info_on_holiday(self, holiday):
+        """This function looks up the info on a given holiday in its dictornary and displays it in a Popup GUI.
+
+        Args:
+            holiday (str): name of holiday
+        """
         info = self.holidaysdict[holiday][0]
         #img_url = self.holidaysdict[holiday][0]        
         self.popup.createPopUp(message=info,title=holiday)
     
     def create_holidays_gui(self): 
+        """This function creates the Holiday GUI."""
         if self.holiday_gui == None:
             self.holiday_gui = GermanHolidaysGUI(self)
             self.holiday_gui.create_main_frame()
         self.holiday_gui.show()
     
     def create_dashboard_gui(self):
+        """This function calls the dashboard controller to create the dashboard GUI."""
         self.dashboard_controller.create_dashboard_gui()

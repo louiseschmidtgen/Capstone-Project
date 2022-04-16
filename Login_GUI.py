@@ -10,6 +10,7 @@ class LogInGUI(QWidget):
         self.login_out_controller = login_out_controller
         
     def createMainFrame(self):
+        """This function builds the GUI using Form Layout."""
         self.setWindowTitle('GGA: Login Window ')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -49,15 +50,18 @@ class LogInGUI(QWidget):
      
     
     def handle_close_window(self):
+        """This function invokes close function in login logout controller."""
         print("Exit button pressed.")
         self.login_out_controller.close_app()
         self.close()
     
     def handle_login_event(self):
+        """This function invokes handle_login_request function in login logout controller."""
         print("login button pressed.")
         print(self.username.text())
         self.login_out_controller.handle_login_request(self.username.text(), self.password.text())
         
     def handle_sign_up_event(self):
+        """This function invokes create_sign_up_gui function in login logout controller."""
         print("Sign Up button pressed.")
         self.login_out_controller.create_sign_up_gui()

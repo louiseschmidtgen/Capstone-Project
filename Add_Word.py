@@ -9,6 +9,7 @@ class AddWordGUI(QWidget):
         self.learnset = learnset
         
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle('GGA: Add Word ')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -59,10 +60,12 @@ class AddWordGUI(QWidget):
         self.setLayout(layout)    
          
     def get_image(self):
+        """This function lets the user select a image in a file dialog."""
         self.image = QFileDialog.getOpenFileName(None,'OpenFile','',"Image file(*.png)")
         self.imagePath = self.image[0] 
         
     def handle_add_word_event(self):
+        """This function gets the user input and tries to create a word and add it to the learnset."""
         wordEngl = self.in_engl.text()
         wordGer = wordGer = self.in_ger.text()
         self.in_engl.setText("")
@@ -71,6 +74,7 @@ class AddWordGUI(QWidget):
         
         
     def handle_close_window(self):
+        """This function hides the current window."""
         self.hide()
         #self.learnset_controller.create_learnset_menu_gui()
         

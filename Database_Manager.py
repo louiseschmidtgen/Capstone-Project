@@ -164,6 +164,12 @@ class DB():
     '''
     #Table 1: User
     def insert_user(self, username, userpassword):
+        """This function inserts a new user into the User table with the given input.
+
+        Args:
+            username (str): name of the new user
+            userpassword (str): password of the new user
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"INSERT INTO User"
                     "(username, userpassword) "
@@ -173,6 +179,15 @@ class DB():
         cnx.commit()
         
     def return_user_id(self, username, userpassword):
+        """This function returns the user id of the given username and password. If user does not exist returns empty cursor
+
+        Args:
+            username (str): name of the new user
+            userpassword (str): password of the new user
+
+        Returns:
+            list: [(userid,)]
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT userId FROM User WHERE username = '{username}' AND userpassword = '{userpassword}'")
         cursor.execute(query)
@@ -181,6 +196,11 @@ class DB():
         #if does not exit returns [] else returns [(userid,)]
         
     def delete_user(self, userid ):
+        """This function deletes the user from user table given its id.
+
+        Args:
+            userid (int): id of the user
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"DELETE FROM User WHERE userId = '{userid}'")
         #query = (f"DELETE FROM User INNER JOIN Learnset ON User.UserID = Learnset.UserID INNER JOIN Word ON Learnset.LearnsetID = Word.LearnsetID WHERE userId = '{userid}'")
@@ -190,6 +210,12 @@ class DB():
         
     #Table2: Learnset
     def insert_learnset(self, learnsetname, userid):
+        """This function insert a learnset into the learnset table with the given input.
+
+        Args:
+            learnsetname (str): name associated with learnset
+            userid (int): id of the user that owns the learnset
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"INSERT INTO Learnset"
                     "(learnsetName, userId) "
@@ -199,6 +225,15 @@ class DB():
         cnx.commit()  
         
     def get_ls_id(self, learnsetname, userid):
+        """This function retrieves the id of the learnset given its name and the userid
+
+        Args:
+            learnsetname (str): name associated with learnset
+            userid (int): id of the user that owns the learnset
+
+        Returns:
+            list: [(learnsetid,)]
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT learnsetId FROM Learnset WHERE userId = '{userid}' AND learnsetName='{learnsetname}' ")
         cursor.execute(query)
@@ -206,6 +241,14 @@ class DB():
         return [i for i in cursor]        
     
     def get_learnsets(self, userid):
+        """This function gets all learnset associated with a given user.
+
+        Args:
+            userid (int): id of the user that owns the learnset
+
+        Returns:
+            list: format: [(4, 'animals', 2), (5, 'food', 2)]first is learnset id, learnset name, userid
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT * FROM Learnset WHERE userId = '{userid}'")
         cursor.execute(query)
@@ -213,6 +256,12 @@ class DB():
         return [i for i in cursor]
     
     def delete_learnset(self, learnsetid):
+        """This function deletes a given learnset from the learnset table.
+
+        Args:
+            learnsetid (int): unique identifier of a learnset
+        """
+        
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"DELETE FROM Learnset WHERE learnsetId = '{learnsetid}'")
         cursor.execute(query)
@@ -220,6 +269,15 @@ class DB():
     
     #Table3: Words
     def insert_word(self, learnsetId, wordEngl, wordGer, wordImg):
+        """This function inserts a word into the word table given its input
+
+        Args:
+            learnsetId (int): unique identifier of a learnset    
+            wordEngl (str): word in english
+            wordGer (str): word in german
+            word_image (_type_): image associated with word
+
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"INSERT INTO Word"
                     "(learnsetId, wordEngl, wordGer, wordImg) "
@@ -229,6 +287,15 @@ class DB():
         cnx.commit()    
     
     def get_words(self, learnsetid):
+        """This function gets all words associated to a given learnset
+
+        Args:
+            learnsetId (int): unique identifier of a learnset
+
+        Returns:
+            list: words format: [(1, 1, 'Cat', 'Katze', '/images/cat.png')] 
+                >wordid, learnsetid, wordEngl, wordGer, wordimg
+        """
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"SELECT * FROM Word WHERE learnsetId = '{learnsetid}'")
         cursor.execute(query)
@@ -236,6 +303,11 @@ class DB():
         return [i for i in cursor]        
         
     def delete_word(self, wordid ):
+        """This function deletes a word from words.
+
+        Args:
+            wordid (int): unique identifier of a word
+        """
         print(f"Deleting word {wordid}")
         cursor, cnx = self.connect_to_db(db=self.DB_NAME)
         query = (f"DELETE FROM Word WHERE WordId = '{wordid}'")

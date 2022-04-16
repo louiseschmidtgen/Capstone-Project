@@ -7,12 +7,26 @@ class PopUpGUI():
         pass
 
     def createPopUp(self, message, title="Pop Up"):
+        """This function creates a pop up GUI with a given message
+
+        Args:
+            message (str): a message
+            title (str, optional): title of the window. Defaults to "Pop Up".
+        """
         msg = QMessageBox()
         msg.setWindowTitle(title)
         msg.setText(message)
         x = msg.exec_() 
     
     def create_yes_no_pop_up(self, message, dashboard_obj, title="Pop Up", ):
+        """This function creates a pop up GUI with a given message. The user clicks either yes or no.
+        If the user clicks yes the delete_account_processing in the dashboard_obj is invoked.
+
+        Args:
+            message (str): a message
+            dashboard_obj (Dashboard Object):
+            title (str, optional): title of the window. Defaults to "Pop Up".
+        """
         def popup_clicked( i):
             print(i.text())
             if i.text() == "&Yes":

@@ -9,6 +9,8 @@ class AddLearnsetGUI(QWidget):
 
         
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout.
+        """
         self.setWindowTitle('GGA: Add Learnset')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -46,12 +48,14 @@ class AddLearnsetGUI(QWidget):
         self.setLayout(layout)     
         
     def handle_add_learnset_event(self):
+        """This function invokes add learnset function in the learnset controller."""
         name = self.in_ls_name.text()
         print(name)
         self.learnset_controller.add_learnset(name)
         self.in_ls_name.setText("")
         
     def handle_close_window(self):
+        """This function invokes create_learnset_menu_gui function in learnset controller."""
         self.hide()
         self.learnset_controller.create_learnset_menu_gui()
         

@@ -8,6 +8,7 @@ class DashboardGUI(QWidget):
         self.dashboard_controller = dashboard_controller
 
     def createMainFrame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle('GGA: Dashboard Window ')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -54,28 +55,31 @@ class DashboardGUI(QWidget):
         self.show()
         
     def log_out_event(self):
+        """This function invokes logout_processing function in dashboard controller."""
         self.hide()
         self.dashboard_controller.logout_processing()
           
     def delete_account_event(self):
+        """This function invokes popup_account_deletion function in dashboard controller."""
         self.dashboard_controller.popup_account_deletion()
     
     def handle_map(self):
+        """This function invokes open_map function in dashboard controller."""
         self.hide()
         self.dashboard_controller.open_map()
     
     def handle_translator(self):
+        """This function invokes open_translator function in dashboard controller."""
         self.hide()
         self.dashboard_controller.open_translator()
             
     def handle_learnsets(self):
+        """This function invokes open_learnsets function in dashboard controller."""
         self.hide()
         self.dashboard_controller.open_learnsets()
     
     def handle_german_holidays(self):
+        """This function invokes open_german_holidays function in dashboard controller."""
         self.hide()
         self.dashboard_controller.open_german_holidays()
     
-    def handle_close_window(self):
-        self.hide()
-        self.dashboard_controller.create_dashboard_gui()

@@ -8,6 +8,7 @@ class GermanHolidaysGUI(QWidget):
         self.holiday_controller = holiday_controller
         
     def create_main_frame(self):
+        """ This function builds the GUI using Grid Layout."""
         self.setWindowTitle('GGA: German Holidays')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -65,10 +66,16 @@ class GermanHolidaysGUI(QWidget):
    
     
     def handle_info_request(self, holiday):
+        """This function invokes display_pop_up_with_info_on_holiday function in the holiday controller
+        
+        Args:
+            holiday (str): name of holiday
+        """
         print(holiday)
         self.holiday_controller.display_pop_up_with_info_on_holiday(holiday)
     
     def handle_close_window(self):
+        """This function invokes create_dashboard_gui function in holiday controller."""
         self.hide()
         self.holiday_controller.create_dashboard_gui()
     

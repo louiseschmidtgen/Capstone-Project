@@ -8,6 +8,7 @@ class MapGUI(QWidget):
         self.dashboard_controller = dashboard_controller
         
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle('GGA: Map of Germany')
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -33,7 +34,9 @@ class MapGUI(QWidget):
         layout.addWidget(self.exit_button, 2,2)
         
         #set layout
-        self.setLayout(layout)         
+        self.setLayout(layout) 
+                
     def handle_close_window(self):
+        """This function invokes create_dashboard_gui function in dashboard controller."""
         self.hide()
         self.dashboard_controller.create_dashboard_gui()

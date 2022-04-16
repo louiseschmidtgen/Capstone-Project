@@ -77,6 +77,9 @@ class User():
         return True
     
     def set_up_default_user(self):
+        """This function sets the user up as a default user
+        that has default learnsets with words.
+        """
         #Set up Animals
         cat = Word(self.newwordID, "the fat cat", "die fette Katze", 'images\myanimals\cat.JPG')
         self.newwordID -=1

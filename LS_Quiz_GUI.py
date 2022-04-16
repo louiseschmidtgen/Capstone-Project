@@ -22,6 +22,7 @@ class LSQuizGUI(QWidget):
             self.current_word = Word(-1, wordEngl="", wordGer="", word_image= 'images\imagenotfound.png')
             
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle("GGA: Study "+ self.learnset_obj.learnset_name)
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -83,11 +84,13 @@ class LSQuizGUI(QWidget):
         self.setLayout(layout)   
         
     def handle_add_word_to_favorites(self):
+        """This function calls add_word_to_favorites method in learnset_controller."""
         #Make sure you don't add a word if there are none to add
         if self.current_word.wordEngl !="":
             self.learnset_controller.add_word_to_favorites(self.current_word)
          
     def update(self):
+        """This function updates the last word displayed to the new word. I also updates the percentage of correct answers vs incorrect ones."""
         self.engl_label.setText(self.current_word.wordEngl)
         #empty translation
         self.in_ger_translation.setText("")
@@ -99,7 +102,7 @@ class LSQuizGUI(QWidget):
         #self.learnsets_label.setText(self.learnset_obj.learnset_name)
         
     def handle_next_event(self):
-        
+        """This function updates current word to be the next word in the wordlist if there is one else it displays an error message."""
         if len(self.learnset_obj.wordlist)== 0:
             self.create_popup("There are no words in the learnset.")
             return
@@ -116,16 +119,19 @@ class LSQuizGUI(QWidget):
         self.update()
         
     def create_popup(self, msg):
+        """This function creates a popUp GUI with an error message."""
         if self.popup == None:
             self.popup = PopUpGUI()
         self.popup.createPopUp(msg)
         
     def handle_close_window(self):
+        """This function destroys the current window and opens the learnset menu GUI."""
         self.destroy()
         self.learnset_controller.create_learnset_menu_gui()
 
     
     def handle_check_event(self):
+        """This function checks wether the user has entered the correct translation and opens a pop up indicating the answer was correct or incorrect."""
         translation = self.in_ger_translation.text()
         if self.current_word.wordGer == translation:
             self.create_popup("Correct!")

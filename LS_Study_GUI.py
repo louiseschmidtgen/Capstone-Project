@@ -20,6 +20,7 @@ class LSStudyGUI(QWidget):
             self.current_word = Word(-1, wordEngl="", wordGer="", word_image= 'images\imagenotfound.png')
             
     def create_main_frame(self):
+        """This function builds the GUI using Grid Layout."""
         self.setWindowTitle("GGA: Study "+ self.learnset_obj.learnset_name)
         self.setGeometry(100, 100, 280, 80)
         self.move(60, 15)
@@ -86,14 +87,18 @@ class LSStudyGUI(QWidget):
         self.setLayout(layout)   
         
     def handle_add_word_to_favorites(self):
+        """This function calls add_word_to_favorites method in learnset_controller."""
         #Make sure you don't add a word if there are none to add
         if self.current_word.wordEngl !="":
             self.learnset_controller.add_word_to_favorites(self.current_word)
 
     def handle_add_word_event(self):
+        """This function calls open_add_word_gui method in learnset_controller."""
         self.learnset_controller.open_add_word_gui(self.learnset_obj)
         
     def handle_delete_word(self):
+        """This function calls remove_word_from_learnset method in learnset_controller. 
+        If there is no word left in the learnset it sets the current word to the default word"""
         self.learnset_controller.remove_word_from_learnset(self.current_word, self.learnset_obj)
         
         if len(self.learnset_obj.wordlist) ==0:
@@ -101,6 +106,8 @@ class LSStudyGUI(QWidget):
         self.handle_previous_event()
     
     def handle_previous_event(self):
+        """This function updates current word to be the previous word in the wordlist if there is one,
+        else it displays an error message."""
         #no words
         if len(self.learnset_obj.wordlist)== 0:
             self.create_popup("There are no words in the learnset.")
@@ -120,6 +127,8 @@ class LSStudyGUI(QWidget):
         self.update()
         
     def update(self):
+        """This function updates the last word displayed to the new word. 
+        I also updates the percentage of correct answers vs incorrect ones."""
         self.engl_label.setText(self.current_word.wordEngl)
         self.ger_label.setText(self.current_word.wordGer)
         self.img_pixmap = QPixmap(self.current_word.image)
@@ -128,6 +137,8 @@ class LSStudyGUI(QWidget):
         #self.learnsets_label.setText(self.learnset_obj.learnset_name)
         
     def handle_next_event(self):
+        """This function updates current word to be the next word 
+        in the wordlist if there is one, else it displays an error message."""
         print("next")
         if len(self.learnset_obj.wordlist)== 0:
             self.create_popup("There are no words in the learnset.")
@@ -145,10 +156,12 @@ class LSStudyGUI(QWidget):
         self.update()
         
     def create_popup(self, msg):
+        """This function creates a popUp GUI with an error message."""
         if self.popup == None:
             self.popup = PopUpGUI()
         self.popup.createPopUp(msg)
         
     def handle_close_window(self):
+        """This function destroys the current window and opens the learnset menu GUI."""
         self.destroy()
         self.learnset_controller.create_learnset_menu_gui()

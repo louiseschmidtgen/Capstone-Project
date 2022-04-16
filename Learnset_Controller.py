@@ -26,7 +26,7 @@ class LearnsetController():
         Args:
             wordEngl (str): word in english
             wordGer (str): word in german
-            word_image (_type_): image associated with word
+            word_image (str): image associated with word
             learnset (learnset object): learnset object that holds all info on learnset
             wordID (int, optional): unique identifier of word. Defaults to -1.
         """
@@ -45,7 +45,7 @@ class LearnsetController():
             self.popup.createPopUp("2Please check your input. Word could not be added.")
             
     def add_word_to_learnset(self, new_word, learnset):
-        """_summary_
+        """This function adds a given word to a given learnset
 
         Args:
             new_word (word object): holds all info on a word
@@ -109,40 +109,63 @@ class LearnsetController():
         else:
             self.popup.createPopUp(f"Learnset could not be created: {name}")
 
-    def delete_learnset(self, learnset):               
+    def delete_learnset(self, learnset):  
+        """This function delets a given learnset
+
+        Args:
+            learnset_obj (learnset object): a learnset groups words together under a topic
+        """           
         self.user_object.delete_learnset(learnset)
         
     def open_learnset_study_mode_gui(self, learnset_obj):
+        """This function opens a given learnset in a learnset study GUI.
+
+        Args:
+            learnset_obj (learnset object): a learnset groups words together under a topic
+        """    
         self.ls_study_gui = LSStudyGUI(self, learnset_obj)
         self.ls_study_gui.create_main_frame()
         self.ls_menu_gui.hide()
         self.ls_study_gui.show()
     
     def open_learnset_quiz_mode_gui(self, learnset_obj):
+        """This function opens a given learnset in a learnset quiz GUI.
+
+        Args:
+            learnset_obj (learnset object): a learnset groups words together under a topic
+        """   
         self.ls_quiz_gui = LSQuizGUI(self, learnset_obj)
         self.ls_quiz_gui.create_main_frame()
         self.ls_menu_gui.hide()
         self.ls_quiz_gui.show()
     
     def open_add_word_gui(self, learnset_obj):
+        """This function opens the add word GUI.
+
+        Args:
+            learnset_obj (learnset object): a learnset groups words together under a topic
+        """   
         if self.add_word_gui == None:
             self.add_word_gui = AddWordGUI(self, learnset_obj)
             self.add_word_gui.create_main_frame()
         self.add_word_gui.show()
     
     def open_add_learnset_gui(self):
+        """This function opens the add learnset GUI."""
         if self.add_learnset_gui == None:
             self.add_learnset_gui = AddLearnsetGUI(self)
             self.add_learnset_gui.create_main_frame()
         self.add_learnset_gui.show()
     
     def create_learnset_menu_gui(self):
+        """This function opens the le menu GUI."""
         if self.ls_menu_gui == None:
             self.ls_menu_gui = LSMenuGUI(self, self.user_object)
             self.ls_menu_gui.create_main_frame()
         self.ls_menu_gui.show()
     
     def open_dashboard(self):
+        """This function invokes create_dashboard_gui method of the dashboard controller."""
         self.dashboard_object.create_dashboard_gui()
     
     
