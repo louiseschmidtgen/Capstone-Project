@@ -1,6 +1,7 @@
 import sys
 import os
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QAction
+import PyQt5
 from Login_GUI import LogInGUI
 from Login_out_Controller import LoginOutController
 from Database_Manager import DB
@@ -27,7 +28,7 @@ def main():
     login_out_controller = LoginOutController(GGA_DB)
     
     #4. create PYQT Application, first window is login GUI
-    app = QApplication(sys.argv)   
+    app = PyQt5.QtWidgets.QApplication(sys.argv)   
     login_out_controller.create_login_gui()
 
     sys.exit(app.exec_())

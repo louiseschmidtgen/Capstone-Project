@@ -62,14 +62,17 @@ class LoginOutController():
             self.popup.createPopUp("Username and Password must be specified.")
             return
         userid = self.get_user_id(username, password)
+        print(userid)
         print("userid", userid)
         if userid>0:  #existing user
             #self.login_gui.handle_close_window()
             self.user = self.create_user_from_database(userid, username, password)
-        else: #create new user
-            favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
-            self.user = User(userid, username, password, favorites_learnset)
-        self.create_dashboard_controller()
+        # else: #create new user
+        #     #favorites_learnset = Learnset(learnsetID=-1, learnset_name="Favorites")
+        #     self.user = User(userid, username, password, favorites_learnset)
+            self.create_dashboard_controller()
+        else:
+            self.popup.createPopUp("Login Information Incorrect.")
             
     def create_user_from_database(self, userid, username, password):
         users_learnsets = []
