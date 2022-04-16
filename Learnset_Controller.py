@@ -30,10 +30,6 @@ class LearnsetController():
             learnset (learnset object): learnset object that holds all info on learnset
             wordID (int, optional): unique identifier of word. Defaults to -1.
         """
-        print(wordEngl)
-        print(wordGer)
-        print(word_image)
-        print(learnset)
         if len(wordEngl)>25 or len(wordGer)>25 or len(word_image)>450:
             self.popup.createPopUp("1Please check your input. Word could not be added.")
             return

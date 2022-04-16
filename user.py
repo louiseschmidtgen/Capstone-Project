@@ -28,8 +28,10 @@ class User():
         return str(self.learnset_list)
     
     def print_learnsets(self):
+        """Debugging function. Prints all ls by their name"""
         for ls in self.learnset_list:
-            print(ls.learnset_name)      
+            print(ls.learnset_name)  
+                
     def add_learnset(self, learnset):
         """add learnset to user
 
