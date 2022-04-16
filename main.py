@@ -14,7 +14,7 @@ def set_env_variables():
     os.environ['SQLUser']='root'
     os.environ['SQLPassword']= 'Veritas!10'
     os.environ['SQLHost'] = "localhost"
-    os.environ['DB_NAME'] ='GeniusGermanDatabase2'
+    os.environ['DB_NAME'] ='GeniusGermanDatabase3'
 
 def main():
     #1. set environment variables. 
