@@ -5,6 +5,7 @@ Here is a link to my documentation of the project *(It contains all the diagrams
 
 The GeniusGermanApp is a language learning application designed to help users learn and practice German vocabulary and language skills. The app provides a user-friendly graphical user interface (GUI) that allows users to create a user account, log in, access various features, and study German words through interactive learnsets and quizzes.
 
+This project is no eye-candy but I learned a lot since it uses the Google Translate API as and a mySQL database!
 ## Features
 
 ### User Account Management
