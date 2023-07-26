@@ -1,7 +1,7 @@
 # GeniusGermanApp
 
 This Project was the Capstone Project for my Software Engineering class.
-Here is a link to my documentation of the project: [GeniusGermanApp](https://docs.google.com/document/d/1XqJAceCnmf6RqE3BI4Zhkrc7axCc2xems4nLynujRto/edit?usp=sharing)
+Here is a link to my documentation of the project *(It contains all the diagrams you could dream of that took an eternity to draw... if only I knew about Mermaid back then... sigh)*: [GeniusGermanApp](https://docs.google.com/document/d/1XqJAceCnmf6RqE3BI4Zhkrc7axCc2xems4nLynujRto/edit?usp=sharing)
 
 The GeniusGermanApp is a language learning application designed to help users learn and practice German vocabulary and language skills. The app provides a user-friendly graphical user interface (GUI) that allows users to create a user account, log in, access various features, and study German words through interactive learnsets and quizzes.
 
@@ -48,12 +48,18 @@ The GeniusGermanApp is a language learning application designed to help users le
 
 ## Screenshots
 
-_Insert relevant screenshots of the application here._
+### Translator Functionality using Google Translate API
 
-## Contributing
+![Image](/images/readme/GeniusGermanApp(2).jpg)
 
-We welcome contributions to GeniusGermanApp. If you find any issues or have suggestions for improvements, please open an issue or create a pull request.
+### Learnset Menu
+![Image](/images/readme/GeniusGermanApp(4).jpg)
 
-## License
+### Quiz Mode
+![Image](/images/readme/GeniusGermanApp(3).jpg)
 
-This project is licensed under the [MIT License](LICENSE).
+### Study Mode
+![Image](/images/readme/GeniusGermanApp(5).jpg)
+
+### Log-In Functionality
+![Image](/images/readme/GeniusGermanApp.jpg)
