@@ -39,13 +39,24 @@ This project is no eye-candy but I learned a lot since it uses the Google Transl
 - Add sound and written pronunciation to words in learnsets.
 - Reset user passwords in case of forgotten passwords.
 
-## Installation and Usage
+## Requirements
+This App runs in Python3. The following additional dependencies are needed to run this Application.
 
-1. Clone the repository to your local machine.
-2. Install the required dependencies (list them here).
-3. Set up the database using the provided SQL script.
-4. Run the GeniusGermanApp using the main.py file.
-5. Create an account or log in to start learning German words.
+- mysql-connector==2.2.9
+- mysql-connector-python==8.0.28
+- protobuf==3.20.0
+- PyQt5==5.15.6
+- PyQt5-Qt5==5.15.2
+- PyQt5-sip==12.10.0
+- PyQt5-stubs==5.15.2.0
+
+## API key
+This App is dependent on an API key for the Translator. This key needs to be changed after using the 500 free calls to it in [RapidAPI](https://rapidapi.com/googlecloud/api/google-translate1).  
+## Configuring the MySQL server:
+- configurations are made in main.py in set_env_variables()
+- The MySQL password should be set to the user's password that they set up when downloading MySQL for their machine.
+- By default the MySQL user is root and the MySQL host is localhost.
+- YOu may also change the database name in the same location
 
 ## Screenshots
 

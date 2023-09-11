@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+mysql-connector = "==2.2.9"
+mysql-connector-python = "==8.0.28"
+protobuf = "==3.20.0"
+PyQt5 = "==5.15.6" # comment out this line on M1 Mac and run make `install-pyqt5-mac-m1` instead
+
+[requires]
+python_version = ">=3.7"
