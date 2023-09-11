@@ -9,9 +9,9 @@ This project is no eye-candy but I learned a lot since it uses the Google Transl
 
 ## Installation
 Prerequisites:
-- Python (>=3.8) [Python 3.8](https://www.python.org/downloads/)
-- Pipenv [Pipenv](https://pypi.org/project/pipenv/)
-- Docker (running) [Docker](https://www.docker.com/products/docker-desktop)
+- [Python](https://www.python.org/downloads/) (>=3.8) 
+- [Pipenv](https://pypi.org/project/pipenv/)
+- [Docker](https://www.docker.com/products/docker-desktop) (running)
 
 To run this App you need to clone the repository and run the following commands in the root directory of the project:
 
