@@ -6,6 +6,26 @@ Here is a link to my documentation of the project *(It contains all the diagrams
 The GeniusGermanApp is a language learning application designed to help users learn and practice German vocabulary and language skills. The app provides a user-friendly graphical user interface (GUI) that allows users to create a user account, log in, access various features, and study German words through interactive learnsets and quizzes.
 
 This project is no eye-candy but I learned a lot since it uses the Google Translate API as and a mySQL database!
+
+## Installation
+Prerequisites:
+- Python (>=3.8) [Python 3.8](https://www.python.org/downloads/)
+- Pipenv [Pipenv](https://pypi.org/project/pipenv/)
+- Docker (running) [Docker](https://www.docker.com/products/docker-desktop)
+
+To run this App you need to clone the repository and run the following commands in the root directory of the project:
+
+```bash
+make build
+```
+
+Note: if running on an M1 Mac you need to run the following command instead:
+Make yourself a cup of coffee, this will take a while...
+```bash
+make build-m1
+```
+
+
 ## Features
 
 ### User Account Management
@@ -39,24 +59,8 @@ This project is no eye-candy but I learned a lot since it uses the Google Transl
 - Add sound and written pronunciation to words in learnsets.
 - Reset user passwords in case of forgotten passwords.
 
-## Requirements
-This App runs in Python3. The following additional dependencies are needed to run this Application.
-
-- mysql-connector==2.2.9
-- mysql-connector-python==8.0.28
-- protobuf==3.20.0
-- PyQt5==5.15.6
-- PyQt5-Qt5==5.15.2
-- PyQt5-sip==12.10.0
-- PyQt5-stubs==5.15.2.0
-
 ## API key
-This App is dependent on an API key for the Translator. This key needs to be changed after using the 500 free calls to it in [RapidAPI](https://rapidapi.com/googlecloud/api/google-translate1).  
-## Configuring the MySQL server:
-- configurations are made in main.py in set_env_variables()
-- The MySQL password should be set to the user's password that they set up when downloading MySQL for their machine.
-- By default the MySQL user is root and the MySQL host is localhost.
-- YOu may also change the database name in the same location
+This App is dependent on an API key for the Translator. This key only allows for 500 free calls a month. To get your own new key got to this site and update the key info in main.go [RapidAPI](https://rapidapi.com/googlecloud/api/google-translate1).  
 
 ## Screenshots
 
