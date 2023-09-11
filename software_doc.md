@@ -7,7 +7,7 @@
 ### April 2022
 #
 
-![alt text](images\GGA_logo.png "Title")
+![alt text](images/GGA_logo.png "Title")
 # App Description
 
 The Genius German App was developed to create a learning platform for people interested in learning the German Language and German culture. It supports Learnsets, a Translator, Holiday information and a Map.
