@@ -23,7 +23,7 @@ def test6_delete_user(my_db, userid):
 def main():
     # set environ
     os.environ['SQLUser'] = 'root'
-    os.environ['SQLPassword'] = 'Veritas!10'
+    os.environ['SQLPassword'] = 'my-secret-pw'
     os.environ['SQLHost'] = "localhost"
     os.environ['DB_NAME'] = 'GeniusGermanDatabase'
     # SECTION 1 Create DB
