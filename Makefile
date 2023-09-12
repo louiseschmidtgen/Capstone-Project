@@ -12,11 +12,7 @@ help:
 
 build: install-deps mysql-start start-app
 
-build-m1: install-deps-m1 mysql-start start-app
-
-install-deps-m1: upgrade-mysqlconnector
-	pipenv --python 3.7
-	pipenv -r requirements.txt install
+build-m1: install-deps install-pyqt5-mac-m1 mysql-start start-app
 
 install-deps: upgrade-mysqlconnector
 	pipenv --python 3.7
