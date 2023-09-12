@@ -10,20 +10,21 @@ help:
 	@echo "make start-app         # Start the application"
 	@echo "make mysql-stop        # Stop and remove the MySQL Docker container"
 
-build: install-deps mysql-start start-app
+build: mysql-start install-deps  start-app
 
-build-m1: install-deps install-pyqt5-mac-m1 mysql-start start-app
+build-m1: mysql-start install-deps install-pyqt5-mac-m1  start-app
 
 install-deps: upgrade-mysqlconnector
 	pipenv --python 3.7
 	pipenv install
+	pipenv run pip install --upgrade mysql-connector-python
 
 install-pyqt5-mac-m1:
 	pipenv run pip install pyqt5 --config-settings --confirm-license= --verbose
 
 mysql-start:
 	docker pull mysql:latest
-	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -d -p 3306:3306 mysql:latest
+	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -d -p 3306:3306 mysql:latest --default-authentication-plugin=mysql_native_password
 
 upgrade-mysqlconnector:
 	pipenv run pip install --upgrade mysql-connector-python
