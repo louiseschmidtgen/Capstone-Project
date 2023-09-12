@@ -1,0 +1,10 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+mysql-connector = "==2.2.9"
+mysql-connector-python = "==8.1.0"
+protobuf = "==4.21.12"
+python-dotenv = "==0.21.1"

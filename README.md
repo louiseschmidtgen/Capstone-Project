@@ -6,6 +6,26 @@ Here is a link to my documentation of the project *(It contains all the diagrams
 The GeniusGermanApp is a language learning application designed to help users learn and practice German vocabulary and language skills. The app provides a user-friendly graphical user interface (GUI) that allows users to create a user account, log in, access various features, and study German words through interactive learnsets and quizzes.
 
 This project is no eye-candy but I learned a lot since it uses the Google Translate API as and a mySQL database!
+
+## Installation
+Prerequisites:
+- [Python](https://www.python.org/downloads/) (>=3.8) 
+- [Pipenv](https://pypi.org/project/pipenv/)
+- [Docker](https://www.docker.com/products/docker-desktop) (running)
+
+To run this App you need to clone the repository and run the following commands in the root directory of the project:
+
+```bash
+make build
+```
+
+Note: if running on an M1 Mac you need to run the following command instead:
+Make yourself a cup of coffee, this will take a while...
+```bash
+make build-m1
+```
+
+
 ## Features
 
 ### User Account Management
@@ -39,13 +59,8 @@ This project is no eye-candy but I learned a lot since it uses the Google Transl
 - Add sound and written pronunciation to words in learnsets.
 - Reset user passwords in case of forgotten passwords.
 
-## Installation and Usage
-
-1. Clone the repository to your local machine.
-2. Install the required dependencies (list them here).
-3. Set up the database using the provided SQL script.
-4. Run the GeniusGermanApp using the main.py file.
-5. Create an account or log in to start learning German words.
+## API key
+This App is dependent on an API key for the Translator. This key only allows for 500 free calls a month. To get your own new key got to this site and update the key info in main.go [RapidAPI](https://rapidapi.com/googlecloud/api/google-translate1).  
 
 ## Screenshots
 
