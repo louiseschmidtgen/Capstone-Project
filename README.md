@@ -20,6 +20,7 @@ make build
 ```
 
 Note: if running on an M1 Mac you need to run the following command instead:
+First, comment this line in the Pipfile `pyqt5 = "==5.15.4"` 
 Make yourself a cup of coffee, this will take a while...
 ```bash
 make build-m1

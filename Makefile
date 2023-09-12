@@ -30,7 +30,9 @@ upgrade-mysqlconnector:
 	pipenv run pip install --upgrade mysql-connector-python
 
 start-app:
-	pipenv run python main.py
+	cd ./app && \
+	pipenv run python main.py && \
+	cd ..
 
 mysql-stop:
 	docker stop mysql-container
